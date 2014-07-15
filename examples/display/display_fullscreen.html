@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+<script src="../../src/creatine.js"></script>
+<script src="../../src/Display.js"></script>
+<script src="../base.js"></script>
+
+<link href="../base.css" rel="stylesheet">
+
+
+<script>
+    var canvas;
+    var stage;
+    var display;
+    var txtFullscreen;
+    var background;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+        display = new creatine.Display(canvas);
+        display.fullscreenScaleMode = creatine.STRETCH;
+        display.scaleMode = creatine.NOSCALE;
+
+        img = new Image();
+        img.src = "../assets/bigbackground.jpg";
+        img.onload = function(event) {
+            background = new createjs.Bitmap(img);
+            background.regX = img.width/2;
+            background.regY = img.height/2;
+            background.x = canvas.width/2;
+            background.y = canvas.height/2;
+
+            stage.addChild(background);
+
+             txtFullscreen = new createjs.Text('Click to enter/exit fullscreen: ', '32px Arial');
+            txtFullscreen.x = 10;
+            txtFullscreen.y = 10;
+
+            stage.addChild(txtFullscreen);
+            stage.update();
+
+            stage.on('stagemousedown', toogleFullscreen);
+            display.on('resize', update);
+            display.on('enterfullscreen', update);
+            display.on('exitfullscreen', update);
+        }
+    }
+
+    function update() {
+        background.x = canvas.width/2;
+        background.y = canvas.height/2;
+        display.refresh();
+        stage.update();
+    }
+
+    function toogleFullscreen() {
+        if (display.isFullscreen()) {
+            display.stopFullscreen();
+        } else {
+            display.startFullscreen();
+        }
+    }
+
+</script>
+</head>
+<body onLoad="init();">
+
+<div class="title">FlexBitmap 01 Aspect</div>
+<canvas id="canvas" width="640" height="480">alternate content</canvas>
+<div class="info">
+Example of FlexBitmap keeping the aspect ratio.
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

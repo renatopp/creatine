@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+<script src="../../src/creatine.js"></script>
+<script src="../../src/DiscreteBar.js"></script>
+<script src="../base.js"></script>
+
+<link href="../base.css" rel="stylesheet">
+
+<script>
+
+    function init() {
+        var canvas = document.getElementById('canvas');
+        var stage = new createjs.Stage(canvas);
+
+        img = new Image();
+        img.src = "../assets/heart.png";
+        img.onload = function(event) {
+            
+            var bar01 = new creatine.DiscreteBar(img, 10, creatine.LEFT_TO_RIGHT);
+            bar01.value = 5;
+            bar01.x = 360;
+            bar01.y = 220;
+
+            var bar02 = new creatine.DiscreteBar(img, 2, creatine.TOP_TO_BOTTOM);
+            bar02.value = 3;
+            bar02.x = 320;
+            bar02.y = 260;
+
+            var bar03 = new creatine.DiscreteBar(img, 5, creatine.RIGHT_TO_LEFT);
+            bar03.value = 7;
+            bar03.x = 300;
+            bar03.y = 220;
+
+            var bar04 = new creatine.DiscreteBar(img, 0, creatine.BOTTOM_TO_TOP);
+            bar04.value = 7;
+            bar04.x = 320;
+            bar04.y = 200;
+
+            stage.addChild(bar01);
+            stage.addChild(bar02);
+            stage.addChild(bar03);
+            stage.addChild(bar04);
+            stage.update();
+        }
+    }
+</script>
+</head>
+<body onLoad="init();">
+
+<div class="title">DiscreteBar 01</div>
+<canvas id="canvas" width="640" height="480">alternate content</canvas>
+<div class="info">
+Example of DiscreteBar if four all possible directions.
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

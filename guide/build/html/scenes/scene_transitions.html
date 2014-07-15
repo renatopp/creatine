@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Transitions Effects &mdash; Creatine User Guide</title>
+    
+    <link rel="stylesheet" href="../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Creatine User Guide" href="../index.html" />
+    <link rel="up" title="Scene Management" href="index.html" />
+    <link rel="next" title="Scene Events" href="scene_events.html" />
+    <link rel="prev" title="Working with Scenes" href="working_with_scenes.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../index.html">
+          <span>Creatine User Guide</span></a></h1>
+        <h2 class="heading"><span>Transitions Effects</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="working_with_scenes.html">Working with Scenes</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="scene_events.html">Scene Events</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="transitions-effects">
+<h1>Transitions Effects<a class="headerlink" href="#transitions-effects" title="Permalink to this headline">¶</a></h1>
+<p>Every time you add or remove scenes in director, you can add a transition effect. For example, again, when the player pause the game, the pause scene can fall from the top, bounce when it touches the bottom of the screen and finally stop at its desired position. Once the game is resumed, the same pause screen can bounce again at the bottom and get out of the screen to the top.</p>
+<p>There are several different effects on Creatine, check it out the <tt class="docutils literal"><span class="pre">creatine.transitions</span></tt> module to see the full list. Meanwhile, take a look at the following code:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">effect</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">creatine</span><span class="p">.</span><span class="nx">transitions</span><span class="p">.</span><span class="nx">MoveIn</span><span class="p">(</span><span class="nx">creatine</span><span class="p">.</span><span class="nx">TOP</span><span class="p">);</span>
+<span class="nx">director</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">PauseScene</span><span class="p">(),</span> <span class="nx">effect</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A <tt class="docutils literal"><span class="pre">MoveIn</span></tt> transition is created at the first line. This effect makes the new scene enter the screen from a given position (in this case, the top). This is a simple linear effect, i.e., the scene will move with the same velocity from its original position to its destination. You can change this default behavior by adding an Easing, founded on <tt class="docutils literal"><span class="pre">createjs.Ease</span></tt> module, for example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">effect</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">creatine</span><span class="p">.</span><span class="nx">transitions</span><span class="p">.</span><span class="nx">MoveIn</span><span class="p">(</span>
+    <span class="nx">creatine</span><span class="p">.</span><span class="nx">TOP</span><span class="p">,</span>
+    <span class="nx">createjs</span><span class="p">.</span><span class="nx">Ease</span><span class="p">.</span><span class="nx">bounceOut</span>
+<span class="p">);</span>
+<span class="nx">director</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">PauseScene</span><span class="p">(),</span> <span class="nx">effect</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now, the pause scene will fall from the top and bounce at the bottom of the screen before reaching its destination.</p>
+<p>You can apply these transitions on the methods: <tt class="docutils literal"><span class="pre">push</span></tt>, <tt class="docutils literal"><span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">pop</span></tt>. Take a look at the examples folder to see transitions in action.</p>
+<p>Next section will describe the events received by scenes, allowing you to pause and resume scenes.</p>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="working_with_scenes.html">Working with Scenes</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="scene_events.html">Scene Events</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Renato de Pontes Pereira.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

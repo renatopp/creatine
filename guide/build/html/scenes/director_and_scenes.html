@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Director and Scenes &mdash; Creatine User Guide</title>
+    
+    <link rel="stylesheet" href="../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Creatine User Guide" href="../index.html" />
+    <link rel="up" title="Scene Management" href="index.html" />
+    <link rel="next" title="Working with Scenes" href="working_with_scenes.html" />
+    <link rel="prev" title="Scene Management" href="index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../index.html">
+          <span>Creatine User Guide</span></a></h1>
+        <h2 class="heading"><span>Director and Scenes</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">Scene Management</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="working_with_scenes.html">Working with Scenes</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="director-and-scenes">
+<h1>Director and Scenes<a class="headerlink" href="#director-and-scenes" title="Permalink to this headline">¶</a></h1>
+<p>Imagine a theater play about the history of a girl that fights alone against an army of zombies from another dimension. The girl finds itself madly in love for a boy that she saved in her journey and now must decide if she will continue in her endless battle against the zombies or if she will run away to the cold mountains with her lover.</p>
+<p>This play can be divided into several <strong>scenes</strong>. In a given scene, the protagonist may be fighting a legion of zombies with her sword in order to keep the enemies away from the children&#8217;s hospital. In another scene, the protagonist talks with her lover in order to know more about him. In a different scene, the nurse at the children&#8217;s hospital tells the protagonist that a zombie horde is approaching and the protagonist must accepts her quest or not.</p>
+<p>In this play, the <strong>director</strong> has the role of deciding which scene will start the play, when it will end, and which scene will be put in the place of the old one. Moreover, the director controls the whole process of scene changing until the end of the play.</p>
+<p>Notice that, in the same way as a theater play, a game can be divided into several scenes. For example: an introduction scene, where an opening video is played; a menu scene, where the player can start the game or change options; credits scene; battle scene; dialog scene; etc.</p>
+<p>Creatine provides an architecture for scene management similar to this theater example. An instance of the <tt class="docutils literal"><span class="pre">Director</span></tt> class has the same role of the director at the theater play, i.e., it controls the whole process of scene changing. By its turn, instances of the <tt class="docutils literal"><span class="pre">Scene</span></tt> class contain all the graphic and sound content of a small part of the game.</p>
+<p>Take a fast look at the following example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">stage</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">createjs</span><span class="p">.</span><span class="nx">Stage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">creatine</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nx">stage</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">menuScene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">creatine</span><span class="p">.</span><span class="nx">Scene</span><span class="p">();</span>
+
+<span class="nx">director</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">menuScene</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In this example, we create the <tt class="docutils literal"><span class="pre">director</span></tt> at line 4 and a scene at line 5. Notice that the <tt class="docutils literal"><span class="pre">Director</span></tt> requires a <tt class="docutils literal"><span class="pre">createjs.Stage</span></tt> instance as parameter. This is necessary because the stage is the object responsible to draw everything on the screen, and the director adds and removes scenes from stage automatically to show and hide them. Following, at line 7, the scene is added to the game via <tt class="docutils literal"><span class="pre">director.push</span></tt>.</p>
+<p>Next section will present how you can add and remove scenes, and how this work inside the director.</p>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">Scene Management</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="working_with_scenes.html">Working with Scenes</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Renato de Pontes Pereira.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

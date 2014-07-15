@@ -1,0 +1,22 @@
+===================
+Director and Scenes
+===================
+
+Creatine provides an intuitive architecture for you to build your games. 
+
+
+Imagine uma peça de teatro sobre a história de uma garota que luta sozinha contra um exército de zumbis vindos de outra dimensão, a garota se vê loucamente apaixonada por um garoto indefeso que ela salvou em sua jornada, agora tem que decidir se vai continuar em sua batalha sem fim ou vai seguir o seu coração e fugir para as montanhas de gelo com seu amado. 
+
+Esta peça pode ser dividida em diversas cenas. Em uma determinada cena, a protagonista pode estar lutando com sua espada contra uma horda de inimigos, para evitar uma invasão em um hospital para crianças indefesas. Em outra cena, a protagonista conversa com seu par amoroso a fim de conhecer mais seu pretendente. Uma outra cena pode apresentar uma enfermeira do hospital para crianças indefesas informando à protagonista que a horda de zumbis está se aproximando e a protagonista deve decidir se vai aceitar a nova aventura ou não.
+
+Nesta peça, o diretor tem o papel de decidir qual será a cena inicial do espetáculo, quando ela vai acabar, e qual cena entrará no lugar. Mais ainda, o diretor vai controlar todo o processo de troca de cenas até o final da peça. 
+
+Creatine fonece uma arquitetura de cenas similar à este exemplo do teatro. Uma instância da classe "Director" tem o mesmo papel do diretor do teatro, ou seja, ela controla todo processo de troca de cenas de um jogo. Por sua vez, as cenas, instâncias da class "Scene", contém todo conteúdo gráfico e sonoro de uma parte pequena do jogo. 
+
+Note que, da mesma forma que a peça de teatro, um jogo também pode ser dividido em cenas. Por exemplo: cena de introdução, onde é apresentado um vídeo de abertura; cena de menu, onde o jogador pode iniciar o jogo ou mudar as opções; cena de créditos; cena de batalha; cena de dialogos; etc.
+
+
+
+
+
+Creatine fornece uma arquitetura simples e intuitiva baseada em cenas para criaçao de seus jogos.

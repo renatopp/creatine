@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+<script src="../../src/creatine.js"></script>
+<script src="../../src/Director.js"></script>
+<script src="../../src/Scene.js"></script>
+<script src="../../src/transitions/ScaleOut.js"></script>
+ 
+<script src="../base.js"></script>
+<link href="../base.css" rel="stylesheet">
+
+<script>
+    var canvas = null;
+    var stage = null;
+    var director = null;
+    var loader = null;
+    var manifest = [
+        {id:'morning', src:'../assets/morning.png'},
+        {id:'evening', src:'../assets/evening.png'},
+        {id:'night', src:'../assets/night.png'},
+    ]
+
+    var scenes = null;
+    var transition = null;
+    var idxScene = null;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+        loader = new createjs.LoadQueue(true);
+        director = new creatine.Director(stage);
+
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener('tick', onTick);
+
+        director.push(new RandomScene(0, 0, 640, 480, 'Loading...'));
+
+        loader.on('complete', onLoadComplete);
+        loader.loadManifest(manifest);
+    }
+
+    function createScene(img) {
+        var scene = new creatine.Scene();
+        var background = new createjs.Bitmap(loader.getResult(img));
+        scene.addChild(background);
+        
+        return scene;
+    }
+
+    function onLoadComplete(event) {
+        stage.addEventListener('stagemousedown', onClick);
+
+        transition = new creatine.transitions.ScaleOut();
+        scenes = [
+            createScene('morning'),
+            createScene('evening'),
+            createScene('night'),
+        ]
+
+        idxScene = -1;
+        onClick();
+    }
+
+    function onTick() {
+        stage.update();
+    }
+
+    function onClick() {
+        if (director.inTransition) return;
+
+        idxScene++;
+        if (idxScene >= 3) {
+            idxScene = 0;
+        }
+
+        scenes[idxScene].scaleX = 1;
+        scenes[idxScene].scaleY = 1;
+        scenes[idxScene].x = 0;
+        scenes[idxScene].y = 0;
+
+        director.replace(
+            scenes[idxScene],
+            transition
+        );
+
+    }
+</script>
+</head>
+<body onLoad="init();">
+
+<div class="title">Fade Out Transitions</div>
+<canvas id="canvas" width="640" height="480">alternate content</canvas>
+<div class="info">
+In this example, the FadeOut, FadeIn, and FadeOut transitions are applied. Click on the canvas to replace the current scene.
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

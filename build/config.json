@@ -1,0 +1,26 @@
+{
+    "creatine_source": [
+        "../src/creatine.js",
+        "../src/functions.js",
+        "../src/Director.js",
+        "../src/Scene.js",
+        "../src/Device.js",
+        "../src/Display.js",
+        "../src/BoxSizer.js",
+        "../src/GridSizer.js",
+        "../src/ProgressBar.js",
+        "../src/DiscreteBar.js",
+        "../src/FlexBitmap.js",
+        "../src/transitions/MoveOut.js",
+        "../src/transitions/MoveIn.js",
+        "../src/transitions/Scroll.js",
+        "../src/transitions/FadeIn.js",
+        "../src/transitions/FadeOut.js",
+        "../src/transitions/FadeInOut.js",
+        "../src/transitions/ScaleIn.js",
+        "../src/transitions/ScaleOut.js",
+        "../src/transitions/ScaleInOut.js"
+    ],
+
+    "docs_out_path":"./output/docs/"
+}

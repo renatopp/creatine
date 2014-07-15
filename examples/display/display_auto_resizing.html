@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">  
+<head>
+
+<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+<script src="../../src/creatine.js"></script>
+<script src="../../src/Display.js"></script>
+<script src="../base.js"></script>
+
+<link href="../base.css" rel="stylesheet">
+
+<style>
+    html {overflow:hidden};
+</style>
+
+<script>
+    var stage = null;
+    var canvas = null;
+    var display = null;
+    var background = null;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+        display = new creatine.Display(canvas);
+
+        img = new Image();
+        img.src = "../assets/bigbackground.jpg";
+        img.onload = function(event) {
+            background = new createjs.Bitmap(img);
+            background.regX = img.width/2;
+            background.regY = img.height/2;
+            background.x = canvas.width/2;
+            background.y = canvas.height/2;
+
+            stage.addChild(background);
+            stage.update();
+        }
+
+        display.on('resize', update);
+    }  
+
+    function update() {
+        background.x = canvas.width/2;
+        background.y = canvas.height/2;
+        stage.update();
+    }
+    function stretch() {
+        display.scaleMode = creatine.STRETCH; 
+        display.refresh();
+        update();
+    };
+    function fit() {
+        display.scaleMode = creatine.FIT;
+        display.refresh();
+        update();
+    };
+    function noscale() {
+        display.scaleMode = creatine.NOSCALE;
+        display.refresh();
+        update();
+    };
+
+</script>
+</head>
+<body onLoad="init();">
+
+<div style="position:absolute; top:0; left:0; background:#ddd; padding:5px">
+    <button value="" onclick="stretch();">Stretch</button>
+    <button value="" onclick="fit();">Fit</button>
+    <button value="" onclick="noscale();">No Scale</button>
+</div>
+
+<canvas id="canvas" width="640" height="480" style="margin:0; border:0px">alternate content</canvas>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
