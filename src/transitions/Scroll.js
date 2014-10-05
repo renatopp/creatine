@@ -127,20 +127,24 @@ var p = Scroll.prototype;
         switch (this.direction) {
             case creatine.LEFT:
                 in_scene.x = canvas_w;
+                in_scene.y = 0;
                 in_prop.x = 0;
                 out_prop.x = -canvas_w;
                 break;
             case creatine.RIGHT:
                 in_scene.x = -canvas_w;
+                in_scene.y = 0;
                 in_prop.x = 0;
                 out_prop.x = canvas_w;
                 break;
             case creatine.TOP:
+                in_scene.x = 0;
                 in_scene.y = canvas_h;
                 in_prop.y = 0;
                 out_prop.y = -canvas_h;
                 break;
             case creatine.BOTTOM:
+                in_scene.x = 0;
                 in_scene.y = -canvas_h;
                 in_prop.y = 0;
                 out_prop.y = canvas_h;

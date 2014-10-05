@@ -78,8 +78,6 @@
     function onClick() {
         if (director.inTransition) return;
 
-        scenes[idxScene].x = 0;
-        scenes[idxScene].y = 0;
         director.replace(
             scenes[idxScene],
             transitions[idxTransition]
@@ -98,7 +96,7 @@
 </head>
 <body onLoad="init();">
 
-<div class="title">Fade In Transitions</div>
+<div class="title">Scroll Transitions</div>
 <canvas id="canvas" width="640" height="480">alternate content</canvas>
 <div class="info">
 In this example, the FadeInOut, FadeIn, and FadeOut transitions are applied. Click on the canvas to replace the current scene.
