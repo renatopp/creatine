@@ -33,20 +33,22 @@ function getRandomColor() {
     return color;
 }
 
-RandomScene = function(x, y, w, h, label) {
-    this.initialize();
-    
-    var color = getRandomColor();
-    var shape = new createjs.Shape();
-    var text = new createjs.Text(label||color, '48px Arial');
-    var text_bounds = text.getBounds();
-    text.x = w/2 - text_bounds.width/2;
-    text.y = h/2 - text_bounds.height/2;
-    shape.graphics.beginFill(color);
-    shape.graphics.drawRect(0, 0, w, h);
-    this.addChild(shape);
-    this.addChild(text);
-    this.x = x;
-    this.y = y;
+if (creatine.Scene) {
+    RandomScene = function(x, y, w, h, label) {
+        this.initialize();
+        
+        var color = getRandomColor();
+        var shape = new createjs.Shape();
+        var text = new createjs.Text(label||color, '48px Arial');
+        var text_bounds = text.getBounds();
+        text.x = w/2 - text_bounds.width/2;
+        text.y = h/2 - text_bounds.height/2;
+        shape.graphics.beginFill(color);
+        shape.graphics.drawRect(0, 0, w, h);
+        this.addChild(shape);
+        this.addChild(text);
+        this.x = x;
+        this.y = y;
+    }
+    RandomScene.prototype = new creatine.Scene();
 }
-RandomScene.prototype = new creatine.Scene();
