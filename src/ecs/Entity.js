@@ -69,7 +69,7 @@ var p = Entity.prototype;
      * @type {Object}
      * @private
     **/
-    p.components;
+    p.components = null;
     
     /**
      * Initialization method.
@@ -82,7 +82,7 @@ var p = Entity.prototype;
 
         this.id = (
             (new Date()).getTime().toString(16) + '-' +
-            (Math.random() * 100000000|0).toString(16) + '-' +
+            (Math.random()*100000000|0).toString(16) + '-' +
             _entity_count
         );
 

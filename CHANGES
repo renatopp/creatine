@@ -3,6 +3,7 @@ Version 0.2.0 []
 
 - source files organized into folders.
 - bug in scroll transition fixed.
+- entity-component-system added.
 
 
 Version 0.1.0 [Jul 15, 2014]
