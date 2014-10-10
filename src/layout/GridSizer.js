@@ -183,8 +183,8 @@ var p = GridSizer.prototype;
             var bounds = item.getBounds();
 
         if (bounds) {
-            var w = bounds.width;
-            var h = bounds.height;
+            var w = bounds.width*item.scaleX;
+            var h = bounds.height*item.scaleY;
         }
         else {
             var w = 0;
