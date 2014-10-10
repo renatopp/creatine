@@ -84,7 +84,7 @@ var p = ScaleIn.prototype;
      *                 400.
      * @protected
     **/
-    p.initialize = function(direction, ease, time) {
+    p.initialize = function(ease, time) {
         this.ease = ease || createjs.Ease.linear;
         this.time = time || 400;
     }
