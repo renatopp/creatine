@@ -38,7 +38,7 @@ this.creatine = this.creatine || {};
  * layout manager, such as the BoxSizer and the GridSizer.
  *
  * @class FlexBitmap
- * @extends createjs.DisplayObject
+ * @extends createjs.Bitmap
  * @constructor
  * @param {Image|HTMLCanvasElement|HTMLVideoElement|String} imageOrUri The 
  *        source object or URI to an image to display. This can be either an 
@@ -123,9 +123,7 @@ var p = FlexBitmap.prototype = new createjs.Bitmap();
         } else if (this.scaleMode === creatine.STRETCH) {
             scale_x = (area.width /width);
             scale_y = area.height/height;
-        } else {
-            scale_x = scale_y = 1;
-        }
+        } 
 
         this.scaleX = scale_x;
         this.scaleY = scale_y;
