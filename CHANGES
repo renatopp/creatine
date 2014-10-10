@@ -1,9 +1,17 @@
-Version 0.2.0 []
-================
+Version 0.2.0 [NEXT]
+====================
 
-- source files organized into folders.
-- bug in scroll transition fixed.
-- entity-component-system added.
+- change: source files organized into folders (issue #7).
+- add: entity-component-system (issue #4).
+- add: sizer now consider the children scale on transition (issue #12).
+- fix: minor fixes on flex bitmap (issue #14).
+- fix: Scroll transition doesn't setting the inScene position (issue #2).
+- fix: MoveOut transition doesn't setting the inScene position (issue #8).
+- fix: ScaleOut transition doesn't setting the inScene scale (issue #10).
+- fix: FadeOut transition doesn't setting the inScene alpha (issue #16).
+- fix: ScaleIn wrong parameter removed (issue #9).
+- fix: ScaleOut wrong parameter removed (issue #10).
+- fix: ScaleInOut wrong parameter removed (issue #11).
 
 
 Version 0.1.0 [Jul 15, 2014]
