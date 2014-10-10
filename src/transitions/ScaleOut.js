@@ -85,7 +85,7 @@ var p = ScaleOut.prototype;
      *                 400.
      * @protected
     **/
-    p.initialize = function(direction, ease, time) {
+    p.initialize = function(ease, time) {
         this.ease = ease || createjs.Ease.linear;
         this.time = time || 400;
     }
@@ -109,6 +109,8 @@ var p = ScaleOut.prototype;
 
         inScene.x = 0;
         inScene.y = 0;
+        inScene.scaleX = 1;
+        inScene.scaleY = 1;
         properties.scaleX = 0;
         properties.scaleY = 0;
         properties.x = canvas_w/2;
