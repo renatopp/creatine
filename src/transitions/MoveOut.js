@@ -154,6 +154,9 @@ var p = MoveOut.prototype;
                 break
         }
 
+        inScene.x = 0;
+        inScene.y = 0;
+
         var tween = createjs.Tween.get(outScene);
         tween.to(properties, this.time, this.ease);
 
