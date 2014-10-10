@@ -282,9 +282,9 @@ var p = Display.prototype = new createjs.EventDispatcher();
             mode = this.fullscreenScaleMode;
         }
 
-        if (this.scaleMode === creatine.STRETCH) {
+        if (mode === creatine.STRETCH) {
             this.resizeStretch();
-        } else if (this.scaleMode === creatine.FIT) {
+        } else if (mode === creatine.FIT) {
             this.resizeFit();
         }
     }
