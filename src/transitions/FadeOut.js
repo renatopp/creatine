@@ -103,6 +103,7 @@ var p = FadeOut.prototype;
     p.run = function(director, outScene, inScene, callback) {
         director.swapScenes();
 
+        inScene.alpha = 1;
         var tween = createjs.Tween.get(outScene);
         tween.to({alpha:0}, this.time, this.ease);
 
