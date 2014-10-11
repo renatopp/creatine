@@ -4,6 +4,7 @@ Version 0.2.0 [NEXT]
 - change: source files organized into folders (issue #7).
 - add: entity-component-system (issue #4).
 - add: sizer now consider the children scale on transition (issue #12).
+- add: TMXMap, requiring the next version of EaselJS (issue #5)
 - fix: minor fixes on flex bitmap (issue #14).
 - fix: Scroll transition doesn't setting the inScene position (issue #2).
 - fix: MoveOut transition doesn't setting the inScene position (issue #8).
