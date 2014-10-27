@@ -62,7 +62,6 @@ What is coming?
 
 - Orthogonal Tile Map (readind director from Tiled);
 - Integrated physics engine (using box2d);
-- AI module with a Behavior Trees implementation;
 - A ScoreBoard system;
 
 **docs**:
@@ -75,11 +74,12 @@ Not sure when (or if) is coming?
 --------------------------------
 
 - UI elements with buttons, dialogs, etc;
-
+- Keyboard management;
 
 -------------------
 What is not coming?
 -------------------
 
+- Behavior Trees implementation, use Behavior3JS instead;
 - A* path finding, use easystar instead;
-- Keyboard management, use keymaster instead;
+- ~~Keyboard management, use keymaster instead~~;
