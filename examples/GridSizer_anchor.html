@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Creatine Example: Anchors in GridSizer</title>
+
+    <script src="../_assets/libs/easeljs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/tweenjs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/preloadjs-NEXT.combined.js"></script>
+
+    <script src="../src/creatine.js"></script>
+    <script src="../src/helpers/functions.js"></script>
+    <script src="../src/layout/GridSizer.js"></script>
+
+    <script src="../_assets/js/base.js"></script>
+    <link href="../_assets/css/base.css" rel="stylesheet">
+</head>
+
+<body onLoad="init();">
+    <canvas id="canvas" width="640" height="480">JavaScript Not Enabled.</canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+    var canvas = null;
+    var stage = null;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+
+        var exp01 = new createjs.Text('top_left', '24px Arial', '#444');
+        var exp02 = new createjs.Text('top_middle', '24px Arial', '#444');
+        var exp03 = new createjs.Text('top_right', '24px Arial', '#444');
+        var exp04 = new createjs.Text('middle_left', '24px Arial', '#444');
+        var exp05 = new createjs.Text('center', '24px Arial', '#444');
+        var exp06 = new createjs.Text('middle_right', '24px Arial', '#444');
+        var exp07 = new createjs.Text('bottom_left', '24px Arial', '#444');
+        var exp08 = new createjs.Text('bottom_middle', '24px Arial', '#444');
+        var exp09 = new createjs.Text('bottom_right', '24px Arial', '#444');
+
+        var area = {x:0, y:0, width:canvas.width, height:canvas.height};
+        var grid = new creatine.GridSizer(3, 3, area);
+        grid.add(exp01, 0, creatine.TOP_LEFT);
+        grid.add(exp02, 0, creatine.TOP);
+        grid.add(exp03, 0, creatine.TOP_RIGHT);
+        grid.add(exp04, 0, creatine.LEFT);
+        grid.add(exp05, 0, creatine.CENTER);
+        grid.add(exp06, 0, creatine.RIGHT);
+        grid.add(exp07, 0, creatine.BOTTOM_LEFT);
+        grid.add(exp08, 0, creatine.BOTTOM);
+        grid.add(exp09, 0, creatine.BOTTOM_RIGHT);
+        grid.layout();
+
+        stage.addChild(exp01);
+        stage.addChild(exp02);
+        stage.addChild(exp03);
+        stage.addChild(exp04);
+        stage.addChild(exp05);
+        stage.addChild(exp06);
+        stage.addChild(exp07);
+        stage.addChild(exp08);
+        stage.addChild(exp09);
+        stage.update();
+    }
+</script>s

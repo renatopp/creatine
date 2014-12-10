@@ -34,62 +34,45 @@ this.creatine.transitions = this.creatine.transitions || {};
 (function() {
     "use strict";
     
-/**
- * The ScaleInOut is a transition effect that scales out the current scene and 
- * scales in the new scene.
- *
- * <h4>Example</h4>
- *
- *     director.replace(
- *         new MyScene(),
- *         new creatine.transitions.ScaleInOut(
- *             createjs.Ease.bounceOut, 
- *             400
- *         )
- *     )
- *
- * @class ScaleInOut
- * @constructor
- * @param {Function} ease An easing function from createjs.Ease (provided by
- *                   TweenJS).
- * @param {Number} time The transition time in milliseconds. Default to 1000.
-**/
-
-var ScaleInOut = function(ease, time) {
-    this.initialize(ease, time);
-}
-var p = ScaleInOut.prototype;
-
     /**
-     * An Easing function from createjs.Ease.
+     * The ScaleInOut is a transition effect that scales out the current scene 
+     * and scales in the new scene.
      *
-     * @property ease
-     * @type {Function}
-    **/
-    p.ease = null;
-
-    /**
-     * The transition time, in milliseconds
+     * <h4>Example</h4>
      *
-     * @property time
-     * @type {Number}
-    **/
-    p.time = null;
-
-    /**
-     * Initialization method.
+     *     director.replace(
+     *         new MyScene(),
+     *         new creatine.transitions.ScaleInOut(
+     *             createjs.Ease.bounceOut, 
+     *             400
+     *         )
+     *     )
      *
-     * @method initialize
+     * @class ScaleInOut
+     * @constructor
      * @param {Function} ease An easing function from createjs.Ease (provided 
      *                   by TweenJS).
      * @param {Number} time The transition time in milliseconds. Default to 
      *                 1000.
-     * @protected
     **/
-    p.initialize = function(ease, time) {
+    var ScaleInOut = function(ease, time) {
+        /**
+         * An Easing function from createjs.Ease.
+         *
+         * @property ease
+         * @type {Function}
+        **/
         this.ease = ease || createjs.Ease.linear;
+
+        /**
+         * The transition time, in milliseconds
+         *
+         * @property time
+         * @type {Number}
+        **/
         this.time = time || 1000;
     }
+    var p = ScaleInOut.prototype;
 
     /**
      * Performe the transition. This method is called only by Director.
@@ -133,6 +116,6 @@ var p = ScaleInOut.prototype;
         }
     }
 
-creatine.transitions.ScaleInOut = ScaleInOut;
+    creatine.transitions.ScaleInOut = ScaleInOut;
  
 }());

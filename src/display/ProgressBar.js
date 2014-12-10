@@ -31,162 +31,159 @@ this.creatine = this.creatine || {};
 
 (function() {
     "use strict";
-    
-/**
- * ProgressBar is a progress bar that handle continuous values. It is divided
- * into three main types, which can be specified by `colorsOrImg` parameter:
- * 
- * - ColorBar: by passing a string representing a color (e.g., '#0f3' or 
- *   'red'), the progress bar will be filled using this color.
- * 
- * - GradientBar: by passing a list of colors (e.g., ['red', 'blue']), the 
- *   progress bar will be filled using a gradient passing through all provided
- *   colors.
- *
- * - ImageBar: by passing a Bitmap or Image object, the progress bar will be 
- *   filled with using the provided image.
- *
- * A ProgressBar can filled in 4 different directions, by using the parameter
- * `direction`: <code>LEFT_TO_RIGHT, RIGHT_TO_LEFT, TOP_TO_BOTTOM, 
- * BOTTOM_TO_TOP</code>. 
- *
- * <h4>Example</h4>
- * 
- *     // Create the Director
- *     var progress = new creatine.ProgressBar(
- *         'green',                     // The fill color
- *         'black',                     // The background color
- *         creatine.LEFT_TO_RIGHT       // The director
- *         100,                         // The bar width
- *         20,                          // The bar height
- *         0,                           // The minimum value
- *         100                          // The maximum value
- *     )
- * 
- * @class ProgressBar
- * @constructor
- * @param {String|Array|Bitmap|Image} colorsOrImg A color, list of colors or 
- *                                    bitmap that will be used to fill the 
- *                                    progress bar.
- * @param {String} backgroundColor A string with the color of the bar 
- *                 background. If `null`, the background will be transparent.
- *                 Default to `null`.
- * @param {Constant} direction The filling direction. Default to 
- *                   `creatine.LEFT_TO_RIGHT`.
- * @param {Number} width The width of the bar. Default to 100.
- * @param {Number} height The height of the bar. Default to 10.
- * @param {Number} min The minimum value of the bar. Default to 0.
- * @param {Number} max The maximum value of the bar. Default to 100.
-**/
-var ProgressBar = function(colorsOrImg, backgroundColor, direction, width, 
-                             height, min, max) {
+        
+    /**
+     * ProgressBar is a progress bar that handle continuous values. It is 
+     * divided into three main types, which can be specified by `colorsOrImg` 
+     * parameter:
+     * 
+     * - ColorBar: by passing a string representing a color (e.g., '#0f3' or 
+     *   'red'), the progress bar will be filled using this color.
+     * 
+     * - GradientBar: by passing a list of colors (e.g., ['red', 'blue']), the 
+     *   progress bar will be filled using a gradient passing through all 
+     *   provided colors.
+     *
+     * - ImageBar: by passing a Bitmap or Image object, the progress bar will 
+     *   be filled with using the provided image.
+     *
+     * A ProgressBar can filled in 4 different directions, by using the 
+     * parameter `direction`: <code>LEFT_TO_RIGHT, RIGHT_TO_LEFT, 
+     * TOP_TO_BOTTOM, BOTTOM_TO_TOP</code>. 
+     *
+     * <h4>Example</h4>
+     * 
+     *     // Create the Director
+     *     var progress = new creatine.ProgressBar(
+     *         'green',                     // The fill color
+     *         'black',                     // The background color
+     *         creatine.LEFT_TO_RIGHT       // The director
+     *         100,                         // The bar width
+     *         20,                          // The bar height
+     *         0,                           // The minimum value
+     *         100                          // The maximum value
+     *     )
+     * 
+     * @class ProgressBar
+     * @constructor
+     * @param {String|Array|Bitmap|Image} colorsOrImg A color, list of colors 
+     *                                    or bitmap that will be used to fill 
+     *                                    the progress bar.
+     * @param {String} backgroundColor A string with the color of the bar 
+     *                 background. If `null`, the background will be 
+     *                 transparent. Default to `null`.
+     * @param {Constant} direction The filling direction. Default to 
+     *                   `creatine.LEFT_TO_RIGHT`.
+     * @param {Number} width The width of the bar. Default to 100.
+     * @param {Number} height The height of the bar. Default to 10.
+     * @param {Number} min The minimum value of the bar. Default to 0.
+     * @param {Number} max The maximum value of the bar. Default to 100.
+    **/
+    var ProgressBar = function(colorsOrImg, backgroundColor, direction, width, 
+                                 height, min, max) {
+        /**
+         * The bar type ('color', 'gradient' or 'image').
+         *
+         * @property type
+         * @type {Sting}
+        **/
+        p.type = null;
 
-    if (colorsOrImg) {
-        this.initialize(
-            colorsOrImg,
-            backgroundColor,
-            direction,
-            width,
-            height,
-            min,
-            max
-        );
+        /**
+         * The bar filling direction (`LEFT_TO_RIGHT`, `RIGHT_TO_LEFT`, 
+         * `TOP_TO_BOTTOM` or `BOTTOM_TO_TOP`).
+         *
+         * @property direction
+         * @type {Constant}
+        **/
+        p.direction = null;
+
+        /**
+         * The image which will be used to fill the bar (if type = 'image').
+         *
+         * @property image
+         * @type {Image}
+        **/
+        p.image = null;
+
+        /**
+         * The array with colors of the gradient to fill the bar (if type = 
+         * 'gradient').
+         *
+         * @property gradientColors
+         * @type {Array}
+        **/
+        p.gradientColors = null;
+
+        /**
+         * The color to fill the bar (if type = 'color').
+         *
+         * @property fillColor
+         * @type {String}
+        **/
+        p.fillColor = null;
+
+        /**
+         * The background color.
+         *
+         * @property backgroundColor
+         * @type {String}
+        **/
+        p.backgroundColor = null;
+
+        /**
+         * The current value of the progress bar.
+         *
+         * @property value
+         * @type {Number}
+        **/
+        p.value = null;
+
+        /**
+         * The minimum value of the progress bar.
+         *
+         * @property min
+         * @type {Number}
+        **/
+        p.min = null;
+
+        /**
+         * The maximum value of the progress bar.
+         *
+         * @property max
+         * @type {Number}
+        **/
+        p.max = null;
+
+        /**
+         * The width of the progress bar.
+         *
+         * @property width
+         * @type {Number}
+        **/
+        p.width = null;
+
+        /**
+         * The height of the progress bar.
+         *
+         * @property height
+         * @type {Number}
+        **/
+        p.height = null;
+
+        if (colorsOrImg) {
+            this._initialize(
+                colorsOrImg,
+                backgroundColor,
+                direction,
+                width,
+                height,
+                min,
+                max
+            );
+        }
     }
-}
-var p = ProgressBar.prototype = new createjs.Shape();
-
-    /**
-     * The bar type ('color', 'gradient' or 'image').
-     *
-     * @property type
-     * @type {Sting}
-    **/
-    p.type = null;
-
-    /**
-     * The bar filling direction (`LEFT_TO_RIGHT`, `RIGHT_TO_LEFT`, 
-     * `TOP_TO_BOTTOM` or `BOTTOM_TO_TOP`).
-     *
-     * @property direction
-     * @type {Constant}
-    **/
-    p.direction = null;
-
-    /**
-     * The image which will be used to fill the bar (if type = 'image').
-     *
-     * @property image
-     * @type {Image}
-    **/
-    p.image = null;
-
-    /**
-     * The array with colors of the gradient to fill the bar (if type = 
-     * 'gradient').
-     *
-     * @property gradientColors
-     * @type {Array}
-    **/
-    p.gradientColors = null;
-
-    /**
-     * The color to fill the bar (if type = 'color').
-     *
-     * @property fillColor
-     * @type {String}
-    **/
-    p.fillColor = null;
-
-    /**
-     * The background color.
-     *
-     * @property backgroundColor
-     * @type {String}
-    **/
-    p.backgroundColor = null;
-
-    /**
-     * The current value of the progress bar.
-     *
-     * @property value
-     * @type {Number}
-    **/
-    p.value = null;
-
-    /**
-     * The minimum value of the progress bar.
-     *
-     * @property min
-     * @type {Number}
-    **/
-    p.min = null;
-
-    /**
-     * The maximum value of the progress bar.
-     *
-     * @property max
-     * @type {Number}
-    **/
-    p.max = null;
-
-    /**
-     * The width of the progress bar.
-     *
-     * @property width
-     * @type {Number}
-    **/
-    p.width = null;
-
-    /**
-     * The height of the progress bar.
-     *
-     * @property height
-     * @type {Number}
-    **/
-    p.height = null;
-
-
-    p.Shape_initialize = p.initialize;
+    var p = createjs.extend(ProgressBar, createjs.Shape);
 
     /**
      * Initialization method.
@@ -204,11 +201,11 @@ var p = ProgressBar.prototype = new createjs.Shape();
      * @param {Number} height The height of the bar. Default to 10.
      * @param {Number} min The minimum value of the bar. Default to 0.
      * @param {Number} max The maximum value of the bar. Default to 100.
-     * @protected
+     * @private
     **/
-    p.initialize = function(colorsOrImg, backgroundColor, direction, width, 
+    p._initialize = function(colorsOrImg, backgroundColor, direction, width, 
                             height, min, max) {
-        this.Shape_initialize();
+        this.Shape_constructor();
 
         if (colorsOrImg instanceof Array) {
             this.type = 'gradient';
@@ -344,5 +341,5 @@ var p = ProgressBar.prototype = new createjs.Shape();
         return true;
     }
 
-creatine.ProgressBar = ProgressBar;
+    creatine.ProgressBar = createjs.promote(ProgressBar, "Shape");
 }());

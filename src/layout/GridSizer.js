@@ -32,89 +32,70 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * GridSizer is a layout manager that organizes its components in a regular 
- * grid. 
- * 
- * Parameters <code>rows</code> and <code>cols</code> specify how many rows and
- * columns the grid will have, respectively. All cells in the grid have the
- * same size. However, each cell can have an individual border, by setting the 
- * border parameter when adding an object to the sizer.
-
- * The anchor parameter can be specified using the following constants: 
- * <code>LEFT, RIGHT, TOP, BOTTOM, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, 
- * BOTTOM_RIGHT, CENTER</code>.
- * 
- * <h4>Example</h4>
- * 
- * A GridSizer which with 3 rows and 5 columns, and occupying all space of a
- * canvas can be created as:
- * 
- *     var area = new createjs.Rectangle(0, 0, canvas.width, canvas.height);
- *     var hbox = new creatine.GridSizer(3, 5, area);
- * 
- * @class GridSizer
- * @constructor
- * @param {Number} rows The number of rows in the grid.
- * @param {Number} cols The number of columns in the grid.
- * @param {createjs.Rectangle} area A rectangle containing the usable area of
- *                             the sizer.
-**/
-var GridSizer = function(rows, cols, area) {
-    this.initialize(rows, cols, area);
-}
-var p = GridSizer.prototype;
-
     /**
-     * The number of rows in the grid.
+     * GridSizer is a layout manager that organizes its components in a regular
+     * grid. 
      * 
-     * @property rows
-     * @type {Number}
-    **/
-    p.rows = null;
+     * Parameters <code>rows</code> and <code>cols</code> specify how many rows
+     * and columns the grid will have, respectively. All cells in the grid have
+     * the same size. However, each cell can have an individual border, by 
+     * setting the border parameter when adding an object to the sizer.
 
-    /**
-     * The number of columns in the grid.
+     * The anchor parameter can be specified using the following constants: 
+     * <code>LEFT, RIGHT, TOP, BOTTOM, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, 
+     * BOTTOM_RIGHT, CENTER</code>.
      * 
-     * @property cols
-     * @type {Number}
-    **/
-    p.cols = null;
-
-    /**
-     * The list within all items in this sizer together with their proportions,
-     * border, and anchor.
+     * <h4>Example</h4>
      * 
-     * @property children
-     * @type {Array}
-     * @private
-    **/
-    p.children = null;
-
-    /**
-     * A rectangle representing the area of which the sizer can use.
-     *
-     * @property area
-     * @type {createjs.Rectangle}
-    **/
-    p.area = null;
-
-    /**
-     * Initialization method.
+     * A GridSizer which with 3 rows and 5 columns, and occupying all space of 
+     * a canvas can be created as:
      * 
-     * @method initialize
+     *     var area = new createjs.Rectangle(0, 0, canvas.width, canvas.height);
+     *     var hbox = new creatine.GridSizer(3, 5, area);
+     * 
+     * @class GridSizer
+     * @constructor
      * @param {Number} rows The number of rows in the grid.
      * @param {Number} cols The number of columns in the grid.
-     * @param {createjs.Rectangle} area A rectangle containing the usable area
+     * @param {createjs.Rectangle} area A rectangle containing the usable area 
      *                             of the sizer.
-     * @protected
     **/
-    p.initialize = function(rows, cols, area) {
+    var GridSizer = function(rows, cols, area) {
+        /**
+         * The number of rows in the grid.
+         * 
+         * @property rows
+         * @type {Number}
+        **/
         this.rows = rows;
+
+        /**
+         * The number of columns in the grid.
+         * 
+         * @property cols
+         * @type {Number}
+        **/
         this.cols = cols;
+
+        /**
+         * The list within all items in this sizer together with their proportions,
+         * border, and anchor.
+         * 
+         * @property children
+         * @type {Array}
+         * @private
+        **/
         this.children = [];
+
+        /**
+         * A rectangle representing the area of which the sizer can use.
+         *
+         * @property area
+         * @type {createjs.Rectangle}
+        **/
         this.area = area;
     }
+    var p = GridSizer.prototype;
 
     /**
      * Adds a new object to the sizer.
@@ -234,5 +215,5 @@ var p = GridSizer.prototype;
         }
     }
 
-creatine.GridSizer = GridSizer;
+    creatine.GridSizer = GridSizer;
 }());

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Creatine Example: Basic GridSizer</title>
+
+    <script src="../_assets/libs/easeljs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/tweenjs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/preloadjs-NEXT.combined.js"></script>
+
+    <script src="../src/creatine.js"></script>
+    <script src="../src/helpers/functions.js"></script>
+    <script src="../src/layout/GridSizer.js"></script>
+    
+    <script src="../_assets/js/base.js"></script>
+    <link href="../_assets/css/base.css" rel="stylesheet">
+</head>
+
+<body onLoad="init();">
+    <canvas id="canvas" width="640" height="480">JavaScript Not Enabled.</canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+    var canvas = null;
+    var stage = null;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+
+        var exp01 = new Expandable('red');
+        var exp02 = new Expandable('green');
+        var exp03 = new Expandable('blue');
+        var exp04 = new Expandable('cyan');
+        var exp05 = new Expandable('magenta');
+        var exp06 = new Expandable('yellow');
+        var exp07 = new Expandable('orange');
+        var exp08 = new Expandable('pink');
+        var exp09 = new Expandable('gray');
+
+        var area = {x:0, y:0, width:canvas.width, height:canvas.height};
+        var grid = new creatine.GridSizer(3, 3, area);
+        grid.add(exp01);
+        grid.add(exp02);
+        grid.add(exp03);
+        grid.add(exp04);
+        grid.add(exp05);
+        grid.add(exp06);
+        grid.add(exp07);
+        grid.add(exp08);
+        grid.add(exp09);
+        grid.layout();
+
+        stage.addChild(exp01);
+        stage.addChild(exp02);
+        stage.addChild(exp03);
+        stage.addChild(exp04);
+        stage.addChild(exp05);
+        stage.addChild(exp06);
+        stage.addChild(exp07);
+        stage.addChild(exp08);
+        stage.addChild(exp09);
+        stage.update();
+    }
+</script>s

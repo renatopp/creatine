@@ -34,61 +34,45 @@ this.creatine.transitions = this.creatine.transitions || {};
 (function() {
     "use strict";
     
-/**
- * The FadeOut is a transition effect that fades out the current scene.
- *
- * <h4>Example</h4>
- *
- *     director.replace(
- *         new MyScene(),
- *         new creatine.transitions.FadeOut(
- *             createjs.Ease.bounceOut, 
- *             400
- *         )
- *     )
- *
- * @class FadeOut
- * @constructor
- * @param {Function} ease An easing function from createjs.Ease (provided by
- *                   TweenJS).
- * @param {Number} time The transition time in milliseconds. Default to 400.
-**/
-
-var FadeOut = function(ease, time) {
-    this.initialize(ease, time);
-}
-var p = FadeOut.prototype;
-
     /**
-     * An Easing function from createjs.Ease.
+     * The FadeOut is a transition effect that fades out the current scene.
      *
-     * @property ease
-     * @type {Function}
-    **/
-    p.ease = null;
-
-    /**
-     * The transition time, in milliseconds
+     * <h4>Example</h4>
      *
-     * @property time
-     * @type {Number}
-    **/
-    p.time = null;
-
-    /**
-     * Initialization method.
+     *     director.replace(
+     *         new MyScene(),
+     *         new creatine.transitions.FadeOut(
+     *             createjs.Ease.bounceOut, 
+     *             400
+     *         )
+     *     )
      *
-     * @method initialize
+     * @class FadeOut
+     * @constructor
      * @param {Function} ease An easing function from createjs.Ease (provided 
      *                   by TweenJS).
      * @param {Number} time The transition time in milliseconds. Default to 
      *                 400.
-     * @protected
     **/
-    p.initialize = function(ease, time) {
+
+var FadeOut = function(ease, time) {
+        /**
+         * An Easing function from createjs.Ease.
+         *
+         * @property ease
+         * @type {Function}
+        **/
         this.ease = ease || createjs.Ease.linear;
+
+        /**
+         * The transition time, in milliseconds
+         *
+         * @property time
+         * @type {Number}
+        **/
         this.time = time || 400;
     }
+    var p = FadeOut.prototype;
 
     /**
      * Performe the transition. This method is called only by Director.
@@ -112,6 +96,6 @@ var p = FadeOut.prototype;
         }
     }
 
-creatine.transitions.FadeOut = FadeOut;
+    creatine.transitions.FadeOut = FadeOut;
  
 }());

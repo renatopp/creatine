@@ -32,17 +32,17 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/** 
- * A Scene is a general container for display objects.
- * 
- * @class Scene
- * @constructor
- * @extends createjs.Container
-**/
-var Scene = function() {
-    this.initialize();
-}
-var p = Scene.prototype = new createjs.Container();
+    /** 
+     * A Scene is a general container for display objects.
+     * 
+     * @class Scene
+     * @constructor
+     * @extends createjs.Container
+    **/
+    var Scene = function() {
+        this.Container_constructor();
+    }
+    var p = createjs.extend(Scene, createjs.Container);
 
     /**
      * Dispatched when the scene is set as the active scene in Director.
@@ -70,5 +70,5 @@ var p = Scene.prototype = new createjs.Container();
      * @event sceneresume
     **/
 
-creatine.Scene = Scene;
+    creatine.Scene = createjs.promote(Scene, "Container");
 }());

@@ -32,33 +32,23 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * Systems implement the game logic, such as collision detectition or general
- * physics control. Systems receive entities that are processed on the
- * <code>process</code> method.
- *
- * <h4>Example</h4>
- *
- *     // Considering that you have implemented the DraggingSystem
- *     var system = new DraggingSystem();
- *     system.process(entityList);
- *     
- *
- * @class System
- * @constructor
-**/
-var System = function() {
-    this.initialize();
-}
-var p = System.prototype;
-    
     /**
-     * Initialization method.
-     * 
-     * @method initialize
-     * @protected
+     * Systems implement the game logic, such as collision detectition or
+     * general physics control. Systems receive entities that are processed on 
+     * the <code>process</code> method.
+     *
+     * <h4>Example</h4>
+     *
+     *     // Considering that you have implemented the DraggingSystem
+     *     var system = new DraggingSystem();
+     *     system.process(entityList);
+     *     
+     *
+     * @class System
+     * @constructor
     **/
-    p.initialize = function() {};
+    var System = function() {}
+    var p = System.prototype;
 
     /**
      * Override this method in order to implemement the system logic.
@@ -67,6 +57,5 @@ var p = System.prototype;
     **/
     p.process = function(entities) {};
 
-creatine.System = System;
- 
+    creatine.System = System;
 }());

@@ -30,85 +30,87 @@
 this.creatine = this.creatine || {};
 
 (function() {
-"use strict";
-
-/**
- * TMXTileLayer represents an abstract TileLayer in the TMX map. Creatine 
- * actually use this as base class to <code>TMXOrthogonalTileLayer</code>,
- * <code>TMXIsometricTileLayer</code> and <code>TMXStaggeredTileLayer</code>. 
- * The difference among projections is performed at layer-level, making new 
- * projections and extensions of the current ones a lot simpler to be created. 
- * This also allows you to use multiple projections to the same map 
- * (unfortunately, this isn't supported by Tiled yet). 
- *
- * @class TMXTileLayer
- * @param {creatine.TMXMap} map The map object.
- * @param {Object} data The data object (from tmx format).
- * @extends createjs.Container
- * @constructor
-**/
-var TMXTileLayer = function(map, data) {
-    this.initialize(map, data);
-}
-var p = TMXTileLayer.prototype = new createjs.Container();
-    /**
-     * Reference to the TMX map.
-     *
-     * @property map
-     * @type {creatine.TMXMap}
-     * @readonly
-    **/
-    p.map = null;
+    "use strict";
 
     /**
-     * The name of the layer.
+     * TMXTileLayer represents an abstract TileLayer in the TMX map. Creatine 
+     * actually use this as base class to <code>TMXOrthogonalTileLayer</code>,
+     * <code>TMXIsometricTileLayer</code> and 
+     * <code>TMXStaggeredTileLayer</code>. The difference among projections is 
+     * performed at layer-level, making new projections and extensions of the
+     * current ones a lot simpler to be created. This also allows you to use
+     * multiple projections to the same map (unfortunately, this isn't 
+     * supported by Tiled yet). 
      *
-     * @property name
-     * @type {String}
-     * @readonly
+     * @class TMXTileLayer
+     * @param {creatine.TMXMap} map The map object.
+     * @param {Object} data The data object (from tmx format).
+     * @extends createjs.Container
+     * @constructor
     **/
-    p.name = null;
+    var TMXTileLayer = function(map, data) {
+        
+        /**
+         * Reference to the TMX map.
+         *
+         * @property map
+         * @type {creatine.TMXMap}
+         * @readonly
+        **/
+        this.map = null;
 
-    /**
-     * The list of tile ids in the layer.
-     *
-     * @property data
-     * @type {Array}
-     * @readonly
-    **/
-    p.data = null;
+        /**
+         * The name of the layer.
+         *
+         * @property name
+         * @type {String}
+         * @readonly
+        **/
+        this.name = null;
 
-    /**
-     * The amount of tiles in x axis.
-     *
-     * @property width
-     * @type {Integer}
-     * @readonly
-    **/
-    p.width = null;
+        /**
+         * The list of tile ids in the layer.
+         *
+         * @property data
+         * @type {Array}
+         * @readonly
+        **/
+        this.data = null;
 
-    /**
-     * The amount of tiles in y axis.
-     *
-     * @property y
-     * @type {Integer}
-     * @readonly
-    **/
-    p.height = null;
+        /**
+         * The amount of tiles in x axis.
+         *
+         * @property width
+         * @type {Integer}
+         * @readonly
+        **/
+        this.width = null;
 
-    p.__Container_initialize = p.initialize;
+        /**
+         * The amount of tiles in y axis.
+         *
+         * @property y
+         * @type {Integer}
+         * @readonly
+        **/
+        this.height = null;
+
+        this._initialize(map, data);
+    }
+    var p = createjs.extend(TMXTileLayer, createjs.Container);
+
     /**
      * Initialization method.
      * 
-     * @method initialize
+     * @method _initialize
      * @param {creatine.TMXMap} map The map object.
      * @param {Object} data The data object (from tmx format).
      * @protected
     **/
-    p.initialize = function(map, data) {
-        if (!map) return;
+    p._initialize = function(map, data) {
+        this.Container_constructor();
 
-        this.__Container_initialize();
+        if (!map) return;
 
         this.map     = map;
         this.name    = data['name'];
@@ -133,5 +135,5 @@ var p = TMXTileLayer.prototype = new createjs.Container();
         throw new Error('TMXTileLayer._createTiles not implemented.');
     }
 
-creatine.TMXTileLayer = TMXTileLayer;
+    creatine.TMXTileLayer = createjs.promote(TMXTileLayer, "Container");
 }());

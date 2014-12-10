@@ -1,6 +1,7 @@
 Version 0.2.0 [NEXT]
 ====================
 
+- change: architecture following the new CreateJS system (issue #17).
 - change: source files organized into folders (issue #7).
 - add: entity-component-system (issue #4).
 - add: sizer now consider the children scale on transition (issue #12).

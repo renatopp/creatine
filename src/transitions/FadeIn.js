@@ -33,62 +33,46 @@ this.creatine.transitions = this.creatine.transitions || {};
 
 (function() {
     "use strict";
-    
-/**
- * The FadeIn is a transition effect that fades in the new scene.
- *
- * <h4>Example</h4>
- *
- *     director.replace(
- *         new MyScene(),
- *         new creatine.transitions.FadeIn(
- *             createjs.Ease.bounceOut, 
- *             400
- *         )
- *     )
- *
- * @class FadeIn
- * @constructor
- * @param {Function} ease An easing function from createjs.Ease (provided by
- *                   TweenJS).
- * @param {Number} time The transition time in milliseconds. Default to 400.
-**/
-
-var FadeIn = function(ease, time) {
-    this.initialize(ease, time);
-}
-var p = FadeIn.prototype;
-
+        
     /**
-     * An Easing function from createjs.Ease.
+     * The FadeIn is a transition effect that fades in the new scene.
      *
-     * @property ease
-     * @type {Function}
-    **/
-    p.ease = null;
-
-    /**
-     * The transition time, in milliseconds
+     * <h4>Example</h4>
      *
-     * @property time
-     * @type {Number}
-    **/
-    p.time = null;
-
-    /**
-     * Initialization method.
+     *     director.replace(
+     *         new MyScene(),
+     *         new creatine.transitions.FadeIn(
+     *             createjs.Ease.bounceOut, 
+     *             400
+     *         )
+     *     )
      *
-     * @method initialize
-     * @param {Function} ease An easing function from createjs.Ease (provided 
+     * @class FadeIn
+     * @constructor
+     * @param {Function} ease An easing function from createjs.Ease (provided
      *                   by TweenJS).
      * @param {Number} time The transition time in milliseconds. Default to 
      *                 400.
-     * @protected
     **/
-    p.initialize = function(ease, time) {
+
+    var FadeIn = function(ease, time) {
+        /**
+         * An Easing function from createjs.Ease.
+         *
+         * @property ease
+         * @type {Function}
+        **/
         this.ease = ease || createjs.Ease.linear;
-        this.time = time || 400;
+
+        /**
+         * The transition time, in milliseconds
+         *
+         * @property time
+         * @type {Number}
+        **/ 
+         this.time = time || 400;
     }
+    var p = FadeIn.prototype;
 
     /**
      * Performe the transition. This method is called only by Director.
@@ -111,6 +95,6 @@ var p = FadeIn.prototype;
         }
     }
 
-creatine.transitions.FadeIn = FadeIn;
+    creatine.transitions.FadeIn = FadeIn;
  
 }());

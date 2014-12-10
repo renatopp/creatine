@@ -32,52 +32,52 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-// Global entity counter, only accessed by the Entity class
-var _entity_count = 0;
-
-/**
- * Entity is a collection of Components, only consisting of an unique ID and a
- * list of components.
- *
- * <h4>Example</h4>
- *
- *     var entity = new creatine.Entity();
- *     entity.addComponent(new MyComponent1());
- *     entity.addComponent(new MyComponent2());
- *
- * @class Entity
- * @constructor
-**/
-var Entity = function() {
-    this.initialize();
-}
-var p = Entity.prototype;
+    // Global entity counter, only accessed by the Entity class
+    var _entity_count = 0;
 
     /**
-     * The Entity ID.
+     * Entity is a collection of Components, only consisting of an unique ID 
+     * and a list of components.
      *
-     * @property id
-     * @type {Striing}
-     * @readonly
+     * <h4>Example</h4>
+     *
+     *     var entity = new creatine.Entity();
+     *     entity.addComponent(new MyComponent1());
+     *     entity.addComponent(new MyComponent2());
+     *
+     * @class Entity
+     * @constructor
     **/
-    p.id = null;
+    var Entity = function() {
+        /**
+         * The Entity ID.
+         *
+         * @property id
+         * @type {Striing}
+         * @readonly
+        **/
+        this.id = null;
 
-    /**
-     * The component list.
-     *
-     * @property components
-     * @type {Object}
-     * @private
-    **/
-    p.components = null;
+        /**
+         * The component list.
+         *
+         * @property components
+         * @type {Object}
+         * @private
+        **/
+        this.components = null;
+        
+        this._initialize();
+    }
+    var p = Entity.prototype;
     
     /**
-     * Initialization method.
-     * 
-     * @method initialize
-     * @protected
+     * Initialization.
+     *
+     * @method _initialize
+     * @private
     **/
-    p.initialize = function() {
+    p._initialize = function() {
         _entity_count++;
 
         this.id = (
@@ -85,7 +85,6 @@ var p = Entity.prototype;
             (Math.random()*100000000|0).toString(16) + '-' +
             _entity_count
         );
-
         this.components = {};
     }
 

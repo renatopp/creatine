@@ -30,21 +30,21 @@
 this.creatine = this.creatine || {};
 
 (function() {
-"use strict";
+    "use strict";
 
-/**
- * TMXStaggeredTileLayer represents a TileLayer in the TMX map.
- *
- * @class TMXStaggeredTileLayer
- * @param {creatine.TMXMap} map The map object.
- * @param {Object} data The data object (from tmx format).
- * @extends creatine.TMXTileLayer
- * @constructor
-**/
-var TMXStaggeredTileLayer = function(map, data) {
-    this.initialize(map, data);
-}
-var p = TMXStaggeredTileLayer.prototype = new creatine.TMXTileLayer();
+    /**
+     * TMXStaggeredTileLayer represents a TileLayer in the TMX map.
+     *
+     * @class TMXStaggeredTileLayer
+     * @param {creatine.TMXMap} map The map object.
+     * @param {Object} data The data object (from tmx format).
+     * @extends creatine.TMXTileLayer
+     * @constructor
+    **/
+    var TMXStaggeredTileLayer = function(map, data) {
+        this.TMXTileLayer_constructor(map, data);
+    }
+    var p = createjs.extend(TMXStaggeredTileLayer, creatine.TMXTileLayer);
 
     /**
      * Create the tiles. Override this method on the child class.
@@ -96,5 +96,5 @@ var p = TMXStaggeredTileLayer.prototype = new creatine.TMXTileLayer();
         }
     }
 
-creatine.TMXStaggeredTileLayer = TMXStaggeredTileLayer;
+    creatine.TMXStaggeredTileLayer = createjs.promote(TMXStaggeredTileLayer, "TMXTileLayer");
 }());

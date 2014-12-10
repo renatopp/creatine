@@ -32,96 +32,75 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * DiscreteBar is a progress bar that only handle discrete values. This is a 
- * simple and specific implementation of a progress bar, for a more general 
- * version, consult the ProgressBar.
- * 
- * It can filled in 4 different directions, by using the parameter `direction`: 
- * <code>LEFT_TO_RIGHT, RIGHT_TO_LEFT, TOP_TO_BOTTOM, BOTTOM_TO_TOP</code>. 
- *
- * <h4>Example</h4>
- * 
- *     // Create the Director
- *     var progress = new creatine.DiscreteBar(
- *         image,                   // The image used to fill.
- *         5,                       // The space between one image and other.
- *         creatine.LEFT_TO_RIGHT   // The director.
- *     )
- * 
- * @class DiscreteBar
- * @constructor
- * @param {Bitmap|Image} image A bitmap or image that will be used to fill the
- *                       progress bar.
- * @param {Number} spacing The space between one image and other. Default to 0.
- * @param {Constant} direction The filling direction. Default to 
- *                   `creatine.LEFT_TO_RIGHT`.
-**/
-var DiscreteBar = function(image, spacing, direction) {
-    this.initialize(image, spacing, direction);
-}
-var p = DiscreteBar.prototype = new createjs.Container();
-
     /**
-     * The bar filling direction (`LEFT_TO_RIGHT`, `RIGHT_TO_LEFT`, 
-     * `TOP_TO_BOTTOM` or `BOTTOM_TO_TOP`).
-     *
-     * @property direction
-     * @type {Constant}
-    **/
-    p.direction = null;
-
-    /**
-     * The image which will be used to fill the bar.
-     *
-     * @property image
-     * @type {Image}
-    **/
-    p.image = null;
-
-    /**
-     * The space between one image and other.
-     *
-     * @property spacing
-     * @type {Image}
-    **/
-    p.spacing = null;
-
-    /**
-     * The current value of the progress bar.
-     *
-     * @property value
-     * @type {Number}
-    **/
-    p.value = null;
-
-    p.Container_initialize = p.initialize;
-
-    /**
-     * Initialization method.
+     * DiscreteBar is a progress bar that only handle discrete values. This is  
+     * a simple and specific implementation of a progress bar, for a more 
+     * general version, consult the ProgressBar.
      * 
-     * @method initialize
+     * It can filled in 4 different directions, by using the parameter 
+     * `direction`: <code>LEFT_TO_RIGHT, RIGHT_TO_LEFT, TOP_TO_BOTTOM, 
+     * BOTTOM_TO_TOP</code>. 
+     *
+     * <h4>Example</h4>
+     * 
+     *     // Create the Director
+     *     var progress = new creatine.DiscreteBar(
+     *         image,                   // The image used to fill.
+     *         5,                       // The space between one image and other.
+     *         creatine.LEFT_TO_RIGHT   // The director.
+     *     )
+     * 
+     * @class DiscreteBar
+     * @constructor
      * @param {Bitmap|Image} image A bitmap or image that will be used to fill 
      *                       the progress bar.
      * @param {Number} spacing The space between one image and other. Default 
      *                 to 0.
      * @param {Constant} direction The filling direction. Default to 
      *                   `creatine.LEFT_TO_RIGHT`.
-     * @protected
     **/
-    p.initialize = function(image, spacing, direction) {
-        this.Container_initialize();
+    var DiscreteBar = function(image, spacing, direction) {
+        this.Container_constructor();
 
+        /**
+         * The bar filling direction (`LEFT_TO_RIGHT`, `RIGHT_TO_LEFT`, 
+         * `TOP_TO_BOTTOM` or `BOTTOM_TO_TOP`).
+         *
+         * @property direction
+         * @type {Constant}
+        **/
+        this.direction = direction || creatine.LEFT_TO_RIGHT;
+
+        /**
+         * The image which will be used to fill the bar.
+         *
+         * @property image
+         * @type {Image}
+        **/
         if (image.image) {
             this.image = image.image;
         } else {
             this.image = image;
         }
 
+        /**
+         * The space between one image and other.
+         *
+         * @property spacing
+         * @type {Image}
+        **/
         this.spacing = spacing || 0;
-        this.direction = direction || creatine.LEFT_TO_RIGHT;
+
+        /**
+         * The current value of the progress bar.
+         *
+         * @property value
+         * @type {Number}
+        **/
         this.value = 0;
+
     }
+    var p = createjs.extend(DiscreteBar, createjs.Container);
 
     /**
     * Returns true or false indicating whether the bar would be visible if 
@@ -135,8 +114,6 @@ var p = DiscreteBar.prototype = new createjs.Container();
         var hasContent = this.value > 0 || this.cacheCanvas;
         return !!(this.visible && this.alpha > 0 && this.scaleX != 0 && this.scaleY != 0 && hasContent);
     };
-
-    p.Container_draw = p.draw;
 
     /**
     * Draws the DiscreteBar into the specified context ignoring its visible, 
@@ -184,5 +161,5 @@ var p = DiscreteBar.prototype = new createjs.Container();
         return this.Container_draw(ctx, ignoreCache);
     }
 
-creatine.DiscreteBar = DiscreteBar;
+    creatine.DiscreteBar = createjs.promote(DiscreteBar, "Container");
 }());

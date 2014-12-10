@@ -32,102 +32,85 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * The BoxSizer is a simple layout manager that organizes its components 
- * horizontally or vertically, depending on the <code>orientationat</code> 
- * parameter.
- * 
- * BoxSizer was create to organize the game interface using a basic geometry, 
- * e.g., in a single row or column. But several BoxSizers can be nested to 
- * create a more complex layout. Notice that, for regular grids, the best 
- * option is the GridSizer.
- * 
- * A BoxSizer requires an orientation parameter, which can be the constants
- * <code>HORIZONTAL</code> or <code>HORIZONTAL</code>. It also requires a
- * rectangle containing the information of how much space the sizer can use to
- * expand and organize its elements.
- * 
- * By specifying the proportion parameter when adding a child, the BoxSizer 
- * will expand to occupy all the available area. By doing this, the sizer also
- * can align the component using the anchor position. The anchor parameter
- * can be specified using the following constants: <code>LEFT, RIGHT, TOP, 
- * BOTTOM, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, CENTER</code>.
- * 
- * Each component can also have an individual border, by setting the border 
- * parameter when adding it to the sizer.
- * 
- * 
- * <h4>Example</h4>
- * 
- * A BoxSizer which grows horizontally and occupying all space of a canvas can
- * be created as:
- * 
- *     var area = new createjs.Rectangle(0, 0, canvas.width, canvas.height);
- *     var hbox = new creatine.BoxSizer(creatine.HORIZONTAL, area);
- * 
- * And components can be added as:
- * 
- *     hbox.add(my_text, 1, 0, creatine.CENTER);
- *     hbox.add(my_sprite);
- *     hbox.layout()
- * 
- * In the example above, the <code>my_sprite</code> component will be put at
- * the right while <code>my_text</code> will be moved the the center of the
- * remaining area.
- * 
- * @class BoxSizer
- * @constructor
- * @param {Constant} orientation The orientation of the sizer (horizontal or
- *                   vertical).
- * @param {createjs.Rectangle} area A rectangle containing the usable area of
- *                             the sizer.
-**/
-var BoxSizer = function(orientation, area) {
-    this.initialize(orientation, area);
-}
-var p = BoxSizer.prototype;
-
     /**
-     * The orientation of the sizer (use the HORIZONTAL or VERTICAL constants)
-     *
-     * @property orientation
-     * @type {Constant}
-    **/
-    p.orientation = null;
-
-    /**
-     * The list within all items in this sizer together with their proportions,
-     * border, and anchor.
+     * The BoxSizer is a simple layout manager that organizes its components 
+     * horizontally or vertically, depending on the <code>orientationat</code> 
+     * parameter.
      * 
-     * @property children
-     * @type {Array}
-     * @private
-    **/
-    p.children = null;
-
-    /**
-     * A rectangle representing the area of which the sizer can use.
-     *
-     * @property area
-     * @type {createjs.Rectangle}
-    **/
-    p.area = null;
-
-    /**
-     * Initialization method.
+     * BoxSizer was create to organize the game interface using a basic 
+     * geometry, e.g., in a single row or column. But several BoxSizers can be 
+     * nested to create a more complex layout. Notice that, for regular grids, 
+     * the best option is the GridSizer.
      * 
-     * @method initialize
-     * @param {Constant} orientation The orientation of the sizer (horizontal or
-     *                   vertical).
-     * @param {createjs.Rectangle} area A rectangle containing the usable area
+     * A BoxSizer requires an orientation parameter, which can be the constants
+     * <code>HORIZONTAL</code> or <code>HORIZONTAL</code>. It also requires a
+     * rectangle containing the information of how much space the sizer can use
+     * to expand and organize its elements.
+     * 
+     * By specifying the proportion parameter when adding a child, the BoxSizer
+     * will expand to occupy all the available area. By doing this, the sizer 
+     * also can align the component using the anchor position. The anchor 
+     * parameter can be specified using the following constants: <code>LEFT, 
+     * RIGHT, TOP, BOTTOM, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, 
+     * CENTER</code>.
+     * 
+     * Each component can also have an individual border, by setting the border
+     * parameter when adding it to the sizer.
+     * 
+     * 
+     * <h4>Example</h4>
+     * 
+     * A BoxSizer which grows horizontally and occupying all space of a canvas 
+     * can be created as:
+     * 
+     *     var area = new createjs.Rectangle(0, 0, canvas.width, canvas.height);
+     *     var hbox = new creatine.BoxSizer(creatine.HORIZONTAL, area);
+     * 
+     * And components can be added as:
+     * 
+     *     hbox.add(my_text, 1, 0, creatine.CENTER);
+     *     hbox.add(my_sprite);
+     *     hbox.layout()
+     * 
+     * In the example above, the <code>my_sprite</code> component will be put 
+     * at the right while <code>my_text</code> will be moved the the center of 
+     * the remaining area.
+     * 
+     * @class BoxSizer
+     * @constructor
+     * @param {Constant} orientation The orientation of the sizer (horizontal 
+     *                   or vertical).
+     * @param {createjs.Rectangle} area A rectangle containing the usable area 
      *                             of the sizer.
-     * @protected
     **/
-    p.initialize = function(orientation, area) {
+    var BoxSizer = function(orientation, area) {
+        /**
+         * The orientation of the sizer (use the HORIZONTAL or VERTICAL constants)
+         *
+         * @property orientation
+         * @type {Constant}
+        **/
         this.orientation = orientation;
+
+        /**
+         * The list within all items in this sizer together with their proportions,
+         * border, and anchor.
+         * 
+         * @property children
+         * @type {Array}
+         * @private
+        **/
         this.children = [];
+
+        /**
+         * A rectangle representing the area of which the sizer can use.
+         *
+         * @property area
+         * @type {createjs.Rectangle}
+        **/
         this.area = area;
     }
+    var p = BoxSizer.prototype;
     
     /**
      * Adds a new object to the sizer.
@@ -305,5 +288,5 @@ var p = BoxSizer.prototype;
         }
     }
 
-creatine.BoxSizer = BoxSizer;
+    creatine.BoxSizer = BoxSizer;
 }());

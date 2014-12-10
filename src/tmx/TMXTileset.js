@@ -30,177 +30,178 @@
 this.creatine = this.creatine || {};
 
 (function() {
-"use strict";
+    "use strict";
 
-/**
- * TMXTileset represents a Tileset in the TMX map.
- *
- * <h4>Data Format</h4>
- *
- * In relation to the tilesets properties, the data must be in the following 
- * format:
- * 
- *     var data = {
- *         'firstgid'    : [Integer], // mandatory
- *         'name'        : [String],  // mandatory
- *         'image'       : [String],  // mandatory
- *         'imagewidth'  : [Integer], // default to image.width
- *         'imageheight' : [Integer], // default to image.height
- *         'tilewidth'   : [Integer], // default to 32
- *         'tileheight'  : [Integer], // default to 32
- *         'spacing'     : [Integer], // default to 0
- *         'margin'      : [Integer], // default to 0
- *         'tileoffset'  : [Object],  // default to {x:0, y:0}
- *         'properties'  : [Object],
- *     }
- * 
- * Consult the official TMX description to known more:
- * https://github.com/bjorn/tiled/wiki/TMX-Map-Format
- *
- * @class TMXTileset
- * @param {Object} data The data object describing the tileset.
- * @constructor
-**/
-var TMXTileset = function(data) {
-    this.initialize(data);
-}
-var p = TMXTileset.prototype;
+    /**
+     * TMXTileset represents a Tileset in the TMX map.
+     *
+     * <h4>Data Format</h4>
+     *
+     * In relation to the tilesets properties, the data must be in the 
+     * following format:
+     * 
+     *     var data = {
+     *         'firstgid'    : [Integer], // mandatory
+     *         'name'        : [String],  // mandatory
+     *         'image'       : [String],  // mandatory
+     *         'imagewidth'  : [Integer], // default to image.width
+     *         'imageheight' : [Integer], // default to image.height
+     *         'tilewidth'   : [Integer], // default to 32
+     *         'tileheight'  : [Integer], // default to 32
+     *         'spacing'     : [Integer], // default to 0
+     *         'margin'      : [Integer], // default to 0
+     *         'tileoffset'  : [Object],  // default to {x:0, y:0}
+     *         'properties'  : [Object],
+     *     }
+     * 
+     * Consult the official TMX description to known more:
+     * https://github.com/bjorn/tiled/wiki/TMX-Map-Format
+     *
+     * @class TMXTileset
+     * @param {Object} data The data object describing the tileset.
+     * @constructor
+    **/
+    var TMXTileset = function(data) {
     
-    /**
-     * The first global tile ID of this tileset.
-     *
-     * @property firstgid
-     * @type {Integer}
-     * @readonly
-    **/
-    p.firstgid = null;
+        /**
+         * The first global tile ID of this tileset.
+         *
+         * @property firstgid
+         * @type {Integer}
+         * @readonly
+        **/
+        this.firstgid = null;
 
-    /**
-     * The name of this tileset.
-     *
-     * @property name
-     * @type {String}
-     * @readonly
-    **/
-    p.name = null;
+        /**
+         * The name of this tileset.
+         *
+         * @property name
+         * @type {String}
+         * @readonly
+        **/
+        this.name = null;
 
-    /**
-     * The image width in pixels.
-     *
-     * @property width
-     * @type {Integer}
-     * @readonly
-    **/
-    p.width = null;
+        /**
+         * The image width in pixels.
+         *
+         * @property width
+         * @type {Integer}
+         * @readonly
+        **/
+        this.width = null;
 
-    /**
-     * The image height in pixels.
-     *
-     * @property height
-     * @type {Integer}
-     * @readonly
-    **/
-    p.height = null;
+        /**
+         * The image height in pixels.
+         *
+         * @property height
+         * @type {Integer}
+         * @readonly
+        **/
+        this.height = null;
 
-    /**
-     * The width of the tiles in this tileset.
-     *
-     * @property width
-     * @type {Integer}
-     * @readonly
-    **/
-    p.tileWidth = null;
+        /**
+         * The width of the tiles in this tileset.
+         *
+         * @property width
+         * @type {Integer}
+         * @readonly
+        **/
+        this.tileWidth = null;
 
-    /**
-     * The height of the tiles in this tileset.
-     *
-     * @property height
-     * @type {Integer}
-     * @readonly
-    **/
-    p.tileHeight = null;
+        /**
+         * The height of the tiles in this tileset.
+         *
+         * @property height
+         * @type {Integer}
+         * @readonly
+        **/
+        this.tileHeight = null;
 
-    /**
-     * The path to the image associated to this tilset.
-     *
-     * @property imagePath
-     * @type {String}
-     * @readonly
-    **/
-    p.imagePath = null;
+        /**
+         * The path to the image associated to this tilset.
+         *
+         * @property imagePath
+         * @type {String}
+         * @readonly
+        **/
+        this.imagePath = null;
 
-    /**
-     * The offsetX to the tile origin. Notice that, tiled assumes (0, 0) as the
-     * left-bottom.
-     *
-     * @property tileOffsetX
-     * @type {Integer}
-     * @readonly
-    **/
-    p.tileOffsetX = null;
+        /**
+         * The offsetX to the tile origin. Notice that, tiled assumes (0, 0) as
+         * the left-bottom.
+         *
+         * @property tileOffsetX
+         * @type {Integer}
+         * @readonly
+        **/
+        this.tileOffsetX = null;
 
-    /**
-     * The offsetY to the tile origin. Notice that, tiled assumes (0, 0) as the
-     * left-bottom.
-     *
-     * @property tileOffsetY
-     * @type {Integer}
-     * @readonly
-    **/
-    p.tileOffsetY = null;
-    /**
-     * The spacing between tiles on the image.
-     *
-     * @property spacing
-     * @type {Integer}
-     * @readonly
-    **/
-    p.spacing = null;
+        /**
+         * The offsetY to the tile origin. Notice that, tiled assumes (0, 0) as
+         * the left-bottom.
+         *
+         * @property tileOffsetY
+         * @type {Integer}
+         * @readonly
+        **/
+        this.tileOffsetY = null;
+        /**
+         * The spacing between tiles on the image.
+         *
+         * @property spacing
+         * @type {Integer}
+         * @readonly
+        **/
+        this.spacing = null;
 
-    /**
-     * The margin of the image.
-     *
-     * @property spacing
-     * @type {Integer}
-     * @readonly
-    **/
-    p.margin = null;
+        /**
+         * The margin of the image.
+         *
+         * @property spacing
+         * @type {Integer}
+         * @readonly
+        **/
+        this.margin = null;
 
-    /**
-     * An object with properties defined by user.
-     *
-     * @property properties
-     * @type {Object}
-     * @readonly
-    **/
-    p.properties = null;
+        /**
+         * An object with properties defined by user.
+         *
+         * @property properties
+         * @type {Object}
+         * @readonly
+        **/
+        this.properties = null;
 
-    /**
-     * The spritesheet object loaded by this tileset.
-     *
-     * @property spritesheet
-     * @type {createjs.SpriteSheet}
-     * @readonly
-    **/
-    p.spritesheet = null;
+        /**
+         * The spritesheet object loaded by this tileset.
+         *
+         * @property spritesheet
+         * @type {createjs.SpriteSheet}
+         * @readonly
+        **/
+        this.spritesheet = null;
 
-    /**
-     * Animation dict contained in the tileset.
-     *
-     * @property animations
-     * @type {Object}
-     * @readonly
-    **/
-    p.animations = null;
+        /**
+         * Animation dict contained in the tileset.
+         *
+         * @property animations
+         * @type {Object}
+         * @readonly
+        **/
+        this.animations = null;
+
+        this._initialize(data);
+    }
+    var p = TMXTileset.prototype;
 
     /**
      * Initialization method.
      * 
-     * @method initialize
+     * @method _initialize
      * @param {Object} data The data object describing the tileset.
      * @protected
     **/
-    p.initialize = function(data) {
+    p._initialize = function(data) {
         this.firstgid    = data['firstgid'];
         this.name        = data['name'];
         this.imagePath   = data['image'];
@@ -268,5 +269,5 @@ var p = TMXTileset.prototype;
         this.spritesheet = new createjs.SpriteSheet(data);
     }
 
-creatine.TMXTileset = TMXTileset;
+    creatine.TMXTileset = TMXTileset;
 }());

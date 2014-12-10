@@ -45,8 +45,8 @@ this.creatine = this.creatine || {};
 "use strict";
 
 // injected by build process
-creatine.version = /*version*/"NEXT";
-creatine.buildDate = /*date*/"Tue, 27 May 2014 15:51:44 GMT";
+creatine.version = /*version*/"0.2.0dev";
+creatine.buildDate = /*date*/"Wed, 10 Dec 2014 12:51:28 GMT";
 
 // Direction and Anchor constants
 creatine.LEFT          = 1;

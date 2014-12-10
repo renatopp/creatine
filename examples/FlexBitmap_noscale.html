@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Creatine Example: FlexBitmap with NOSCALE option</title>
+
+    <script src="../_assets/libs/easeljs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/tweenjs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/preloadjs-NEXT.combined.js"></script>
+
+    <script src="../src/creatine.js"></script>
+    <script src="../src/helpers/functions.js"></script>
+    <script src="../src/display/FlexBitmap.js"></script>
+    
+    <script src="../_assets/js/base.js"></script>
+    <link href="../_assets/css/base.css" rel="stylesheet">
+</head>
+
+<body onLoad="init();">
+    <canvas id="canvas" width="640" height="480">JavaScript Not Enabled.</canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+    var canvas = null;
+    var stage = null;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+
+        function box(img, x, y, w, h) {
+            var bitmap = new creatine.FlexBitmap(img, creatine.NOSCALE);
+            var container = new createjs.Container();
+            var shape = new createjs.Shape();
+            console.log(bitmap)
+
+            bitmap.layout({x:x, y:y, width:w, height:h});
+            bitmap.x = x;
+            bitmap.y = y;
+
+            shape.graphics.beginStroke('red');
+            shape.graphics.drawRect(x, y, w, h);
+            container.addChild(bitmap);
+            container.addChild(shape);
+            stage.addChild(container);
+        }
+
+        img = new Image();
+        img.src = "../_assets/img/logo.png";
+        img.onload = function(event) {
+            box(img, 10, 10, 400, 30);
+            box(img, 10, 250, 100, 150);
+            stage.update();
+        }
+    }
+</script>

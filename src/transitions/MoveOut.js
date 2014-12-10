@@ -33,78 +33,60 @@ this.creatine.transitions = this.creatine.transitions || {};
 
 (function() {
     "use strict";
-    
-/**
- * The MoveOut is a transition effect that slides out the current scene from 
- * the screen. MoveOut accepts the following direction constants: <code>LEFT, 
- * RIGHT, TOP, BOTTOM, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT</code>.
- *
- * <h4>Example</h4>
- *
- *     director.replace(
- *         new MyScene(),
- *         new creatine.transitions.MoveOut(
- *             creatine.LEFT,
- *             createjs.Ease.bounceOut,
- *             400
- *         )
- *     )
- *
- * @class MoveOut
- * @constructor
- * @param {Constant} direction The direction to where the current scene will 
- *                   leave.
- * @param {Function} ease An easing function from createjs.Ease (provided by
- *                   TweenJS).
- * @param {Number} time The transition time in milliseconds. Default to 400.
-**/
-
-var MoveOut = function(direction, ease, time) {
-    this.initialize(direction, ease, time);
-}
-var p = MoveOut.prototype;
-
+        
     /**
-     * The direction to where the current scene will leave.
+     * The MoveOut is a transition effect that slides out the current scene 
+     * from the screen. MoveOut accepts the following direction constants: 
+     * <code>LEFT, RIGHT, TOP, BOTTOM, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, 
+     * BOTTOM_RIGHT</code>.
      *
-     * @property direction
-     * @type {Constant}
-    **/
-    p.direction = null;
-
-    /**
-     * An Easing function from createjs.Ease.
+     * <h4>Example</h4>
      *
-     * @property ease
-     * @type {Function}
-    **/
-    p.ease = null;
-
-    /**
-     * The transition time, in milliseconds
+     *     director.replace(
+     *         new MyScene(),
+     *         new creatine.transitions.MoveOut(
+     *             creatine.LEFT,
+     *             createjs.Ease.bounceOut,
+     *             400
+     *         )
+     *     )
      *
-     * @property time
-     * @type {Number}
-    **/
-    p.time = null;
-
-    /**
-     * Initialization method.
-     *
-     * @method initialize
-     * @param {Constant} direction The direction to where the current scene will
-                         leave.
+     * @class MoveOut
+     * @constructor
+     * @param {Constant} direction The direction to where the current scene  
+     *                   will leave.
      * @param {Function} ease An easing function from createjs.Ease (provided 
      *                   by TweenJS).
      * @param {Number} time The transition time in milliseconds. Default to 
      *                 400.
-     * @protected
     **/
-    p.initialize = function(direction, ease, time) {
+
+    var MoveOut = function(direction, ease, time) {
+        /**
+         * The direction to where the current scene will leave.
+         *
+         * @property direction
+         * @type {Constant}
+        **/
         this.direction = direction || creatine.LEFT;
+
+        /**
+         * An Easing function from createjs.Ease.
+         *
+         * @property ease
+         * @type {Function}
+        **/
         this.ease = ease || createjs.Ease.linear;
+
+        /**
+         * The transition time, in milliseconds
+         *
+         * @property time
+         * @type {Number}
+        **/
         this.time = time || 400;
     }
+    var p = MoveOut.prototype;
 
     /**
      * Performe the transition. This method is called only by Director.
@@ -165,6 +147,6 @@ var p = MoveOut.prototype;
         }
     }
 
-creatine.transitions.MoveOut = MoveOut;
+    creatine.transitions.MoveOut = MoveOut;
  
 }());

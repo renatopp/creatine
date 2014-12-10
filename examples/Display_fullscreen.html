@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Creatine Example: Fullscreen</title>
+
+    <script src="../_assets/libs/easeljs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/tweenjs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/preloadjs-NEXT.combined.js"></script>
+
+    <script src="../src/creatine.js"></script>
+    <script src="../src/helpers/functions.js"></script>
+    <script src="../src/helpers/Display.js"></script>
+    
+    <script src="../_assets/js/base.js"></script>
+    <link href="../_assets/css/base.css" rel="stylesheet">
+</head>
+
+<body onLoad="init();">
+    <canvas id="canvas" width="640" height="480">JavaScript Not Enabled.</canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+    var canvas        = null;
+    var stage         = null;
+    var display       = null;
+    var txtFullscreen = null;
+    var background    = null;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+        display = new creatine.Display(canvas);
+        display.fullscreenScaleMode = creatine.STRETCH;
+        display.scaleMode = creatine.NOSCALE;
+
+        img = new Image();
+        img.src = "../_assets/img/bigbackground.jpg";
+        img.onload = function(event) {
+            background = new createjs.Bitmap(img);
+            background.regX = img.width/2;
+            background.regY = img.height/2;
+            background.x = canvas.width/2;
+            background.y = canvas.height/2;
+
+            stage.addChild(background);
+
+             txtFullscreen = new createjs.Text('Click to enter/exit fullscreen: ', '32px Arial');
+            txtFullscreen.x = 10;
+            txtFullscreen.y = 10;
+
+            stage.addChild(txtFullscreen);
+            stage.update();
+
+            stage.on('stagemousedown', toogleFullscreen);
+            display.on('resize', update);
+            display.on('enterfullscreen', update);
+            display.on('exitfullscreen', update);
+        }
+    }
+
+    function update() {
+        background.x = canvas.width/2;
+        background.y = canvas.height/2;
+        display.refresh();
+        stage.update();
+    }
+
+    function toogleFullscreen() {
+        if (display.isFullscreen()) {
+            display.stopFullscreen();
+        } else {
+            display.startFullscreen();
+        }
+    }
+</script>

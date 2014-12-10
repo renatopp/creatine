@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/yui-cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico">
+    <script src="../assets/js/yui-source.js"></script>
+	<title>Creatine v0.2.0dev API Documentation : scene\Director.js</title>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><a href="http://guineashots.com/creatine"><img src="..\assets\docs-icon.png" title="Creatine"></a></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Documentation for: 0.2.0dev</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/BoxSizer.html">BoxSizer</a></li>
+            
+                <li><a href="../classes/Component.html">Component</a></li>
+            
+                <li><a href="../classes/Device.html">Device</a></li>
+            
+                <li><a href="../classes/Director.html">Director</a></li>
+            
+                <li><a href="../classes/DiscreteBar.html">DiscreteBar</a></li>
+            
+                <li><a href="../classes/Display.html">Display</a></li>
+            
+                <li><a href="../classes/Entity.html">Entity</a></li>
+            
+                <li><a href="../classes/FadeIn.html">FadeIn</a></li>
+            
+                <li><a href="../classes/FadeInOut.html">FadeInOut</a></li>
+            
+                <li><a href="../classes/FadeOut.html">FadeOut</a></li>
+            
+                <li><a href="../classes/FlexBitmap.html">FlexBitmap</a></li>
+            
+                <li><a href="../classes/GridSizer.html">GridSizer</a></li>
+            
+                <li><a href="../classes/MoveIn.html">MoveIn</a></li>
+            
+                <li><a href="../classes/MoveOut.html">MoveOut</a></li>
+            
+                <li><a href="../classes/ProgressBar.html">ProgressBar</a></li>
+            
+                <li><a href="../classes/ScaleIn.html">ScaleIn</a></li>
+            
+                <li><a href="../classes/ScaleInOut.html">ScaleInOut</a></li>
+            
+                <li><a href="../classes/ScaleOut.html">ScaleOut</a></li>
+            
+                <li><a href="../classes/Scene.html">Scene</a></li>
+            
+                <li><a href="../classes/Scroll.html">Scroll</a></li>
+            
+                <li><a href="../classes/System.html">System</a></li>
+            
+                <li><a href="../classes/TMXImageLayer.html">TMXImageLayer</a></li>
+            
+                <li><a href="../classes/TMXIsometricTileLayer.html">TMXIsometricTileLayer</a></li>
+            
+                <li><a href="../classes/TMXMap.html">TMXMap</a></li>
+            
+                <li><a href="../classes/TMXObjectLayer.html">TMXObjectLayer</a></li>
+            
+                <li><a href="../classes/TMXOrthogonalTileLayer.html">TMXOrthogonalTileLayer</a></li>
+            
+                <li><a href="../classes/TMXStaggeredTileLayer.html">TMXStaggeredTileLayer</a></li>
+            
+                <li><a href="../classes/TMXTileLayer.html">TMXTileLayer</a></li>
+            
+                <li><a href="../classes/TMXTileset.html">TMXTileset</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Creatine.html">Creatine</a></li>
+            
+                <li><a href="../modules/Transitions.html">Transitions</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+            <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <script>
+	var name = scene\Director.js      
+</script>
+<h1 class="file-heading">File:scene\Director.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+* Director
+*
+* Copyright (c) 2014 Renato de Pontes Pereira.
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy 
+* of this software and associated documentation files (the &quot;Software&quot;), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+* copies of the Software, and to permit persons to whom the Software is 
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*/
+
+/**
+ * @module Creatine
+ **/
+
+// namespace:
+this.creatine = this.creatine || {};
+
+(function() {
+    &quot;use strict&quot;;
+
+    /**
+     * Director is the class that controls all the game scenes. This involves 
+     * storing the current scene that is running, receiving the next scene 
+     * which will replace the current one, and applying the transition effect 
+     * between the old and the new scenes. When the current scene is replaced 
+     * by a new one, the Director will automatically remove the old scene from 
+     * stage and add the new scene to it.
+     * 
+     * Only a single scene can be active at a time, however, Director can 
+     * handle a scene stack, allowing the addition of a new scene and keeping 
+     * the old one in the stack. This feature is specially useful to overlap 
+     * scenes and creating, for example, a semi-transparent pause scene.
+     * 
+     * It is possible to specify a transition effect in any action of adding or
+     * removing scenes, making possible to slide a new scene to the screen or 
+     * to make the old scene fade away. To know more about transitions, consult
+     * the module &lt;code&gt;creatine.transitions&lt;/code&gt;.
+     *
+     * &lt;h4&gt;Example&lt;/h4&gt;
+     * 
+     *     // Create the Director
+     *     var director = new creatine.Director(stage);
+     * 
+     *     // Adds the first scene
+     *     director.push(new MyCustomScene());
+     * 
+     *     // Replaces the current scene
+     *     director.replace(new OtherCustomScene());
+     * 
+     * @class Director
+     * @constructor
+     * @param {createjs.Stage} stage A &lt;code&gt;createjs.Stage&lt;/code&gt; object.
+    **/
+    var Director = function(stage) {   
+        /**
+         * The &lt;code&gt;createjs.Stage&lt;/code&gt; instance.
+         *
+         * @property stage
+         * @type {createjs.Stage}
+         * @private
+        **/
+        this.stage = stage;
+
+        /**
+         * The active scene. This variable can be viewed as the top of the 
+         * scene stack.
+         *
+         * @property scene
+         * @type {Scene}
+         * @readonly
+        **/
+        this.scene = null;
+
+        /**
+         * The next scene which will replace the actual one. This variable is 
+         * required to store the next scene until the transition effect is 
+         * done.
+         *
+         * @property nextScene
+         * @type {Scene}
+         * @readonly
+        **/
+        this.nextScene = null;
+
+        /**
+         * The stack of scenes. This list only stores the inactive scenes, use 
+         * the {{#crossLink &quot;Director/scene:property&quot;}}{{/crossLink}} to access
+         * the active scene.
+         *
+         * @property sceneStack
+         * @type {list}
+         * @readonly
+        **/
+        this.sceneStack = [];
+
+        /**
+         * Indicates if a transition effect is running or not.
+         *
+         * @property sceneStack
+         * @type boolean
+         * @readonly
+        **/
+        this.inTransition = false;
+    }
+    var p = Director.prototype;
+
+    /**
+     * Pauses the current scene and send it to the stack. The new scene will 
+     * replace the current one.
+     * 
+     * If transition is provided, the transition effect will be applied before
+     * replacing scenes.
+     * 
+     * @method push
+     * @param {Scene} scene The new scene.
+     * @param {Transition} transition A transition effect.
+    **/
+    p.push = function(scene, transition) {
+        if (this.scene) {
+            this.scene.dispatchEvent(&#x27;scenepause&#x27;);
+            this.sceneStack.push(this.scene);
+
+            var index = this.stage.getChildIndex(this.scene);
+            this.stage.addChildAt(scene, index+1)
+        } else {
+            this.stage.addChild(scene);
+        }
+
+        this.nextScene = scene;
+
+        var _this = this;
+        var setScene = function() {
+            _this.scene = _this.nextScene;
+            _this.nextScene = null;
+            _this.inTransition = false;
+            _this.scene.dispatchEvent(&#x27;sceneenter&#x27;);
+        }
+
+        if (transition) {
+            this.inTransition = true;
+            transition.run(this, this.scene||{}, this.nextScene, setScene);
+        } else {
+            setScene();
+        }
+    }
+
+    /**
+     * Removes the current scene and reactive the scene at the top of the 
+     * stack.
+     * 
+     * If transition is provided, the transition effect will be applied before
+     * replacing scenes.
+     * 
+     * @method pop
+     * @param {Transition} transition A transition effect.
+    **/
+    p.pop = function(transition) {
+        if (this.sceneStack.length == 0) return;
+
+        var scene = this.sceneStack.pop();
+        this.nextScene = scene;
+
+        if (this.scene) {
+            this.scene.dispatchEvent(&#x27;scenepause&#x27;);
+        }
+
+        var _this = this;
+        var setScene = function() {
+            _this.inTransition = false;
+            if (_this.scene) {
+                _this.scene.dispatchEvent(&#x27;sceneexit&#x27;);
+                _this.stage.removeChild(_this.scene);
+            }
+
+            _this.scene = _this.nextScene;
+            _this.scene.dispatchEvent(&#x27;sceneresume&#x27;);
+            _this.nextScene = null;
+
+        }
+
+        if (transition) {
+            this.inTransition = true;
+            transition.run(this, this.scene||{}, this.nextScene, setScene);
+        } else {
+            setScene();
+        }
+    }
+
+    /**
+     * Replaces the current scene by a new one.
+     * 
+     * If transition is provided, the transition effect will be applied before
+     * replacing scenes.
+     * 
+     * @method replace
+     * @param {Scene} scene The new scene.
+     * @param {Transition} transition A transition effect.
+    **/
+    p.replace = function(scene, transition) {
+        if (this.scene) {
+            this.scene.dispatchEvent(&#x27;scenepause&#x27;);
+            var index = this.stage.getChildIndex(this.scene);
+            this.stage.addChildAt(scene, index+1);
+        } else {
+            this.stage.addChild(scene);
+        }
+
+        this.nextScene = scene;
+
+        var _this = this;
+        var setScene = function() {
+            _this.inTransition = false;
+            if (_this.scene) {
+                _this.scene.dispatchEvent(&#x27;sceneexit&#x27;);
+                _this.stage.removeChild(_this.scene);
+            }
+
+            _this.scene = _this.nextScene;
+            _this.scene.dispatchEvent(&#x27;sceneenter&#x27;);
+            _this.nextScene = null;
+        }
+
+        if (transition) {
+            this.inTransition = true;
+            transition.run(this, this.scene||{}, this.nextScene, setScene);
+        } else {
+            setScene();
+        }
+    }
+
+    /**
+     * Swap the position of {{#crossLink &quot;Director/scene:property&quot;}}{{/crossLink}}
+     * and {{#crossLink &quot;Director/nextScene:property&quot;}}{{/crossLink}} in the 
+     * stage. This method is used in transitions to change the z-index of 
+     * scenes.
+     * 
+     * @method swapScenes
+     * @protected
+    **/
+    p.swapScenes = function() {
+        this.stage.swapChildrenAt(
+            this.stage.getChildIndex(this.scene),
+            this.stage.getChildIndex(this.nextScene)
+        );
+    }
+
+    /**
+     * Removes all scenes from the stack, without transitions.
+     * 
+     * @method clearStack
+    **/
+    p.clearStack = function() {
+        for (var i=0; i&lt;this.sceneStack.length; i++) {
+            this.sceneStack[i].dispatchEvent(&#x27;sceneexit&#x27;);
+            this.stage.removeChild(this.sceneStack[i]);
+        }
+        this.sceneStack = [];
+    }
+
+    creatine.Director = Director;
+}());
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

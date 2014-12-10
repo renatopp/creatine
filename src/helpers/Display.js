@@ -34,186 +34,182 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * The Display class handles manual and automatic canvas scaling, fullscreen 
- * and orientation changes, and canvas properties.
- *
- * @class Display
- * @param {HTMLCanvasElement} canvas A HTML canvas object.
- * @constructor
-**/
-var Display = function(canvas) {
-    this.initialize(canvas); 
-}
-var p = Display.prototype = new createjs.EventDispatcher();
-    
     /**
-     * The canvas element.
+     * The Display class handles manual and automatic canvas scaling, 
+     * fullscreen and orientation changes, and canvas properties.
      *
-     * @property canvas
-     * @type {HTMLCanvasElement}
-     * @private
+     * @class Display
+     * @param {HTMLCanvasElement} canvas A HTML canvas object.
+     * @constructor
     **/
-    p.canvas = null;
+    var Display = function(canvas) {        
+        /**
+         * The canvas element.
+         *
+         * @property canvas
+         * @type {HTMLCanvasElement}
+         * @private
+        **/
+        this.canvas = null;
 
-    /**
-     * The current canvas width.
-     *
-     * @property width
-     * @type {Number}
-     * @readonly
-    **/
-    p.width = null;
+        /**
+         * The current canvas width.
+         *
+         * @property width
+         * @type {Number}
+         * @readonly
+        **/
+        this.width = null;
 
-    /**
-     * The current canvas height.
-     *
-     * @property height
-     * @type {Number}
-     * @readonly
-    **/
-    p.height = null;
+        /**
+         * The current canvas height.
+         *
+         * @property height
+         * @type {Number}
+         * @readonly
+        **/
+        this.height = null;
 
-    /**
-     * The original canvas width.
-     *
-     * @property sourceWidth
-     * @type {Number}
-     * @readonly
-    **/
-    p.sourceWidth = null;
+        /**
+         * The original canvas width.
+         *
+         * @property sourceWidth
+         * @type {Number}
+         * @readonly
+        **/
+        this.sourceWidth = null;
 
-    /**
-     * The original canvas height.
-     *
-     * @property sourceHeight
-     * @type {Number}
-     * @readonly
-    **/
-    p.sourceHeight = null;
+        /**
+         * The original canvas height.
+         *
+         * @property sourceHeight
+         * @type {Number}
+         * @readonly
+        **/
+        this.sourceHeight = null;
 
-    /**
-     * The minimum width of the canvas, used when canvas is resized.
-     *
-     * @property minWidth
-     * @type {Number}
-     * @readonly
-    **/
-    p.minWidth = null;
+        /**
+         * The minimum width of the canvas, used when canvas is resized.
+         *
+         * @property minWidth
+         * @type {Number}
+         * @readonly
+        **/
+        this.minWidth = null;
 
-    /**
-     * The minimum height of the canvas, used when canvas is resized.
-     *
-     * @property minHeight
-     * @type {Number}
-     * @readonly
-    **/
-    p.minHeight = null;
+        /**
+         * The minimum height of the canvas, used when canvas is resized.
+         *
+         * @property minHeight
+         * @type {Number}
+         * @readonly
+        **/
+        this.minHeight = null;
 
-    /**
-     * The maximum width of the canvas, used when canvas is resized.
-     *
-     * @property maxWidth
-     * @type {Number}
-     * @readonly
-    **/
-    p.maxWidth = null;
+        /**
+         * The maximum width of the canvas, used when canvas is resized.
+         *
+         * @property maxWidth
+         * @type {Number}
+         * @readonly
+        **/
+        this.maxWidth = null;
 
-    /**
-     * The maximum height of the canvas, used when canvas is resized.
-     *
-     * @property maxHeight
-     * @type {Number}
-     * @readonly
-    **/
-    p.maxHeight = null;
+        /**
+         * The maximum height of the canvas, used when canvas is resized.
+         *
+         * @property maxHeight
+         * @type {Number}
+         * @readonly
+        **/
+        this.maxHeight = null;
 
-    /**
-     * The scale mode of the canvas. Set this to use the automatic resizing. 
-     * Accepted modes are:
-     *
-     * <ul>
-     *     <li><code>creatine.FIT</code>: scale the canvas to fit the available
-     *         space, without exceeding it and respecting the aspect ratio.
-     *     </li>
-     *     <li><code>creatine.STRETCH</code>: scale the canvas to fit the 
-     *         available space, without exceeding it but does not respect the 
-     *         aspect ratio.
-     *     </li>
-     *     <li><code>creatine.NOSCALE</code>: (default) keeps the original 
-     *         size of the canvas.
-     *     </li>
-     * </ul>
-     *
-     * @property scaleMode
-     * @type {Constant}
-    **/
-    p.scaleMode = null;
+        /**
+         * The scale mode of the canvas. Set this to use the automatic 
+         * resizing. Accepted modes are:
+         *
+         * <ul>
+         *     <li><code>creatine.FIT</code>: scale the canvas to fit the 
+         *         available space, without exceeding it and respecting the 
+         *         aspect ratio.</li>
+         *     <li><code>creatine.STRETCH</code>: scale the canvas to fit the 
+         *         available space, without exceeding it but does not respect 
+         *         the aspect ratio.</li>
+         *     <li><code>creatine.NOSCALE</code>: (default) keeps the original 
+         *         size of the canvas.</li>
+         * </ul>
+         *
+         * @property scaleMode
+         * @type {Constant}
+        **/
+        this.scaleMode = null;
 
-    /**
-     * The orientation of the <strong>window</strong>.
-     *
-     * @property orientation
-     * @type {Number}
-     * @readonly
-    **/
-    p.orientation = null;
+        /**
+         * The orientation of the <strong>window</strong>.
+         *
+         * @property orientation
+         * @type {Number}
+         * @readonly
+        **/
+        this.orientation = null;
 
-    /**
-     * If <code>true</code>, the canvas will be resized using the CSS style.
-     *
-     * @property scaleUsingCSS
-     * @type {Boolean}
-    **/
-    p.scaleUsingCSS = false;
+        /**
+         * If <code>true</code>, the canvas will be resized using the CSS 
+         * style.
+         *
+         * @property scaleUsingCSS
+         * @type {Boolean}
+        **/
+        this.scaleUsingCSS = false;
 
-    /**
-     * Same as <code>scaleMode</code> but for fullscreen mode.
-     *
-     * @property fullscreenScaleMode
-     * @type {Constant}
-    **/
-    p.fullscreenScaleMode = null;
+        /**
+         * Same as <code>scaleMode</code> but for fullscreen mode.
+         *
+         * @property fullscreenScaleMode
+         * @type {Constant}
+        **/
+        this.fullscreenScaleMode = null;
 
-    /**
-     * The command to call the fullscreen.
-     *
-     * @property _fullscreenRequest
-     * @type {String}
-     * @private
-    **/
-    p._fullscreenRequest = null;
+        /**
+         * The command to call the fullscreen.
+         *
+         * @property _fullscreenRequest
+         * @type {String}
+         * @private
+        **/
+        this._fullscreenRequest = null;
 
-    /**
-     * The last width before entering on fullscreen mode.
-     *
-     * @property _width
-     * @type {Number}
-     * @private
-    **/
-    p._width = null;
+        /**
+         * The last width before entering on fullscreen mode.
+         *
+         * @property _width
+         * @type {Number}
+         * @private
+        **/
+        this._width = null;
 
-    /**
-     * The last height before entering on fullscreen mode.
-     *
-     * @property _height
-     * @type {Number}
-     * @private
-    **/
-    p._height = null;
-    
-
-    p.EventDispatcher_initialize = p.initialize;
+        /**
+         * The last height before entering on fullscreen mode.
+         *
+         * @property _height
+         * @type {Number}
+         * @private
+        **/
+        this._height = null;
+        
+        this._initialize(canvas); 
+    }
+    var p = createjs.extend(Display, createjs.EventDispatcher);
 
     /**
      * Initialization method.
      * 
      * @method initialize
      * @param {HTMLCanvasElement} canvas The HTML canvas element.
-     * @protected
+     * @private
     **/
-    p.initialize = function(canvas) {
-        this.EventDispatcher_initialize();
+    p._initialize = function(canvas) {
+        this.EventDispatcher_constructor();
         
         this.canvas              = canvas;
         this.width               = canvas.width;
@@ -520,8 +516,8 @@ var p = Display.prototype = new createjs.EventDispatcher();
      * @method resizeOriginal
     **/
     p.resizeOriginal = function() {
-        width = this.sourceWidth;
-        height = this.sourceHeight;
+        var width = this.sourceWidth;
+        var height = this.sourceHeight;
         this._setSize(width, height);
     }
 
@@ -674,5 +670,5 @@ var p = Display.prototype = new createjs.EventDispatcher();
         }
     }
 
-creatine.Display = Display;
+    creatine.Display = createjs.promote(Display, "EventDispatcher");
 }());

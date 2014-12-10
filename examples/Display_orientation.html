@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Creatine Example: Display Orientation</title>
+
+    <script src="../_assets/libs/easeljs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/tweenjs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/preloadjs-NEXT.combined.js"></script>
+
+    <script src="../src/creatine.js"></script>
+    <script src="../src/helpers/functions.js"></script>
+    <script src="../src/helpers/Display.js"></script>
+    
+    <script src="../_assets/js/base.js"></script>
+    <link href="../_assets/css/base.css" rel="stylesheet">
+</head>
+
+<body onLoad="init();">
+    <canvas id="canvas" width="640" height="480">JavaScript Not Enabled.</canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+    var canvas         = null;
+    var stage          = null;
+    var display        = null;
+    var txtOrientation = null;
+    var txtPortrait    = null;
+    var txtLandscape   = null;
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        stage = new createjs.Stage(canvas);
+        display = new creatine.Display(canvas);
+
+        txtOrientation = new createjs.Text('Orientation: ', '32px Arial');
+        txtOrientation.x = 10;
+        txtOrientation.y = 10;
+
+        txtPortrait = new createjs.Text('In Portrait: ', '32px Arial');
+        txtPortrait.x = 10;
+        txtPortrait.y = 60;
+
+        txtLandscape = new createjs.Text('In Landscape: ', '32px Arial');
+        txtLandscape.x = 10;
+        txtLandscape.y = 110;
+
+        stage.addChild(txtOrientation);
+        stage.addChild(txtPortrait);
+        stage.addChild(txtLandscape);
+
+        display.on('orientation', update);
+        update();
+    }
+
+    function update() {
+        txtOrientation.text = 'Orientation: ' + display.orientation;
+        txtPortrait.text = 'In Portrait: ' + display.isPortrait();
+        txtLandscape.text = 'In Landscape: ' + display.isLandscape();
+        stage.update(); 
+    }
+
+</script>

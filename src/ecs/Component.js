@@ -32,50 +32,48 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * The Component object is a container of data to be included on entities. 
- * For example, a position component may store the <code>x</code> and 
- * <code>y</code> while a display component may store the image of the object.
- * Components usually does not have methods, but it can be included.
- *
- * When inheriting the Component class you must set the name variable, 
- * preferably on prototype (such as in the example below). Setting this 
- * variable is obligatory and if not, entity will throw an error.
- * 
- * <h4>Example: Creating a component</h4>
- *
- *     var PositionComponent = function() {};
- *     PositionComponent.prototype = new creatine.Component();
- *     PositionComponent.prototype.name = 'position';
- *     PositionComponent.prototype.x = 0;
- *     PositionComponent.prototype.y = 0;
- *     
- *     var entity = new creatine.Entity();
- *     entity.addComponent(new PositionComponent());
- *
- *     
- * <h4>Example: Using a component</h4>
- *
- *     var position = entity.getComponent('position');
- *     position.x = 100;
- *     position.y = 150;
- *
- *
- * @class Component
- * @constructor
-**/
-var Component = function() {};
-
-var p = Component.prototype;
-    
     /**
-     * The component name.
+     * The Component object is a container of data to be included on entities. 
+     * For example, a position component may store the <code>x</code> and 
+     * <code>y</code> while a display component may store the image of the 
+     * object. Components usually does not have methods, but it can be 
+     * included.
      *
-     * @property name
-     * @type {String}
+     * When inheriting the Component class you must set the name variable, 
+     * preferably on prototype (such as in the example below). Setting this 
+     * variable is obligatory and if not, entity will throw an error.
+     * 
+     * <h4>Example: Creating a component</h4>
+     *
+     *     var PositionComponent = function() {};
+     *     PositionComponent.prototype = new creatine.Component();
+     *     PositionComponent.prototype.name = 'position';
+     *     PositionComponent.prototype.x = 0;
+     *     PositionComponent.prototype.y = 0;
+     *     
+     *     var entity = new creatine.Entity();
+     *     entity.addComponent(new PositionComponent());
+     *
+     *     
+     * <h4>Example: Using a component</h4>
+     *
+     *     var position = entity.getComponent('position');
+     *     position.x = 100;
+     *     position.y = 150;
+     *
+     *
+     * @class Component
+     * @constructor
     **/
-    p.name = null;
+    var Component = function() {
+        /**
+         * The component name.
+         *
+         * @property name
+         * @type {String}
+        **/
+        this.name = null;
+    }
 
-creatine.Component = Component;
- 
+    creatine.Component = Component;
 }());

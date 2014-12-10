@@ -32,69 +32,44 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * FlexBitmap extends the createjs.Bitmap and adds the layout function to it,
- * thus, FlexBitmap can resize itself to best fit its position and area in a 
- * layout manager, such as the BoxSizer and the GridSizer.
- *
- * @class FlexBitmap
- * @extends createjs.Bitmap
- * @constructor
- * @param {Image|HTMLCanvasElement|HTMLVideoElement|String} imageOrUri The 
- *        source object or URI to an image to display. This can be either an 
- *        Image, Canvas, or Video object, or a string URI to an image file to 
- *        load and use. If it is a URI, a new Image object will be constructed
- *        and assigned to the .image property.
- * @param {boolean} scaleMode creatine.NOSCALE The scale mode.
-**/
-var FlexBitmap = function(imageOrUri, scaleMode) {
-    this.initialize(imageOrUri, scaleMode); 
-}
-var p = FlexBitmap.prototype = new createjs.Bitmap();
-
     /**
-     * Indicates the scaling mode of the image:
-     * 
-     * <ul>
-     *     <li><code>creatine.STRETCH</code>: to fill the available area 
-     *                                        ignoring the aspect ratio.
-     *     </li>
-     *     <li><code>creatine.FIT</code>: to fill the available area without 
-     *                                    overflow and keeping the aspect 
-     *                                    ratio.
-     *     </li>
-     *     <li><code>creatine.FILL</code>: to fill the available area with 
-     *                                     overflow and keeping the aspect 
-     *                                     ratio.
-     *     </li>
-     *     <li><code>creatine.NOSCALE</code>: to keep the original size.</li>
-     * </ul>
+     * FlexBitmap extends the createjs.Bitmap and adds the layout function to 
+     * it, thus, FlexBitmap can resize itself to best fit its position and area
+     * in a layout manager, such as the BoxSizer and the GridSizer.
      *
-     * @property scaleMode
-     * @type {constant}
-    **/
-    p.scaleMode = null;
-
-    
-    p.Bitmap_initialize = p.initialize;
-
-    /**
-     * Initialization method.
-     *
-     * @method initialize
+     * @class FlexBitmap
+     * @extends createjs.Bitmap
+     * @constructor
      * @param {Image|HTMLCanvasElement|HTMLVideoElement|String} imageOrUri The 
-     *        source object or URI to an image to display. This can be either
-     *        an Image, Canvas, or Video object, or a string URI to an image
-     *        file to load and use. If it is a URI, a new Image object will be
+     *        source object or URI to an image to display. This can be either 
+     *        an Image, Canvas, or Video object, or a string URI to an image 
+     *        file to load and use. If it is a URI, a new Image object will be 
      *        constructed and assigned to the .image property.
-     * @param {Constant} scaleMode The scaling mode of the image. Default to 
-                         NOSCALE.
-     * @protected
+     * @param {boolean} scaleMode creatine.NOSCALE The scale mode.
     **/
-    p.initialize = function(imageOrUri, scaleMode) {
-        this.Bitmap_initialize(imageOrUri);
+    var FlexBitmap = function(imageOrUri, scaleMode) {
+        this.Bitmap_constructor(imageOrUri);
+
+        /**
+         * Indicates the scaling mode of the image:
+         * 
+         * <ul>
+         *     <li><code>creatine.STRETCH</code>: to fill the available area 
+         *         ignoring the aspect ratio.</li>
+         *     <li><code>creatine.FIT</code>: to fill the available area without 
+         *         overflow and keeping the aspect ratio.</li>
+         *     <li><code>creatine.FILL</code>: to fill the available area with 
+         *         overflow and keeping the aspect ratio.</li>
+         *     <li><code>creatine.NOSCALE</code>: to keep the original size.
+         *     </li>
+         * </ul>
+         *
+         * @property scaleMode
+         * @type {constant}
+        **/
         this.scaleMode = scaleMode || creatine.NOSCALE;
     }
+    var p = createjs.extend(FlexBitmap, createjs.Bitmap);
 
     /**
      * Resize this this image to fit the area.
@@ -107,8 +82,8 @@ var p = FlexBitmap.prototype = new createjs.Bitmap();
         var width = this.image.width;
         var height = this.image.height;
 
-        var scale_x;
-        var scale_y;
+        var scale_x = 1;
+        var scale_y = 1;
 
         if (this.scaleMode === creatine.FIT) {
             scale_x = scale_y = Math.min(
@@ -141,5 +116,5 @@ var p = FlexBitmap.prototype = new createjs.Bitmap();
         return this._rectangle.initialize(0, 0, w, h);
     }
 
-creatine.FlexBitmap = FlexBitmap;
+    creatine.FlexBitmap = createjs.promote(FlexBitmap, "Bitmap");
 }());

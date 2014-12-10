@@ -30,80 +30,79 @@
 this.creatine = this.creatine || {};
 
 (function() {
-"use strict";
-
-/**
- * TMXImageLayer represents an image layer on TMX map.
- *
- * @class TMXImageLayer
- * @param {creatine.TMXMap} map The map object.
- * @param {Object} data The data object (from tmx format).
- * @extends createjs.Bitmap
- * @constructor
-**/
-var TMXImageLayer = function(map, data) {
-    this.initialize(map, data);
-}
-var p = TMXImageLayer.prototype = new createjs.Bitmap();
+    "use strict";
 
     /**
-     * Reference to the TMX map.
+     * TMXImageLayer represents an image layer on TMX map.
      *
-     * @property map
-     * @type {creatine.TMXMap}
-     * @readonly
+     * @class TMXImageLayer
+     * @param {creatine.TMXMap} map The map object.
+     * @param {Object} data The data object (from tmx format).
+     * @extends createjs.Bitmap
+     * @constructor
     **/
-    p.map = null;
+    var TMXImageLayer = function(map, data) {
+        /**
+         * Reference to the TMX map.
+         *
+         * @property map
+         * @type {creatine.TMXMap}
+         * @readonly
+        **/
+        this.map = null;
 
-    /**
-     * The path for the image.
-     *
-     * @property imagePath
-     * @type {String}
-     * @readonly
-    **/
-    p.imagePath = null;
+        /**
+         * The path for the image.
+         *
+         * @property imagePath
+         * @type {String}
+         * @readonly
+        **/
+        this.imagePath = null;
 
-    /**
-     * The name of the layer.
-     *
-     * @property name
-     * @type {String}
-     * @readonly
-    **/
-    p.name = null;
+        /**
+         * The name of the layer.
+         *
+         * @property name
+         * @type {String}
+         * @readonly
+        **/
+        this.name = null;
 
-    /**
-     * The amount of tiles in x axis. Not really useful here.
-     *
-     * @property width
-     * @type {Integer}
-     * @readonly
-    **/
-    p.width = null;
+        /**
+         * The amount of tiles in x axis. Not really useful here.
+         *
+         * @property width
+         * @type {Integer}
+         * @readonly
+        **/
+        this.width = null;
 
-    /**
-     * The amount of tiles in y axis. Not really useful here.
-     *
-     * @property y
-     * @type {Integer}
-     * @readonly
-    **/
-    p.height = null;
+        /**
+         * The amount of tiles in y axis. Not really useful here.
+         *
+         * @property y
+         * @type {Integer}
+         * @readonly
+        **/
+        this.height = null;
 
-    p.__Bitmap_initialize = p.initialize;
+        this._initialize(map, data);
+    }
+    var p = createjs.extend(TMXImageLayer, createjs.Bitmap);
+
     /**
      * Initialization method.
      * 
-     * @method initialize
+     * @method _initialize
      * @param {creatine.TMXMap} map The map object.
      * @param {Object} data The data object (from tmx format).
      * @protected
     **/
-    p.initialize = function(map, data) {
+    p._initialize = function(map, data) {
         if (!map) return;
 
-        this.__Bitmap_initialize(data['image']);
+        this.Bitmap_constructor(data['image']);
 
         this.map       = map;
         this.name      = data['name'];
@@ -116,5 +115,5 @@ var p = TMXImageLayer.prototype = new createjs.Bitmap();
         this.alpha     = data['opacity'];
     }
 
-creatine.TMXImageLayer = TMXImageLayer;
+    creatine.TMXImageLayer = createjs.promote(TMXImageLayer, "Bitmap");
 }());

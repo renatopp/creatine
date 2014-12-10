@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Creatine Example: Scaling Progress Bar</title>
+
+    <script src="../_assets/libs/easeljs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/tweenjs-NEXT.combined.js"></script>
+    <script src="../_assets/libs/preloadjs-NEXT.combined.js"></script>
+
+    <script src="../src/creatine.js"></script>
+    <script src="../src/helpers/functions.js"></script>
+    <script src="../src/display/ProgressBar.js"></script>
+
+    <script src="../_assets/js/base.js"></script>
+    <link href="../_assets/css/base.css" rel="stylesheet">
+</head>
+
+<body onLoad="init();">
+    <canvas id="canvas" width="640" height="480">JavaScript Not Enabled.</canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+    var canvas = null;
+    var stage = null;
+
+    function init() {
+        var canvas = document.getElementById('canvas');
+        var stage = new createjs.Stage(canvas);
+
+        var bar01 = new creatine.ProgressBar('green', 'gray', null, 30, 30);
+        bar01.value = 25;
+        bar01.x = 10;
+        bar01.y = 10;
+
+        var bar02 = new creatine.ProgressBar('green', 'gray', null, 30, 30);
+        bar02.value = 25;
+        bar02.x = 10;
+        bar02.y = 50;
+        bar02.layout({x:0, y:0, width:620, height:420});
+
+        var dir = -1;
+        var max = 100;
+        var min = 25;
+        var value = 25;
+        createjs.Ticker.addEventListener('tick', function(event) {
+            if (value == min || value == max) {
+                dir *= -1;
+            }
+
+            value += dir;
+
+            bar01.value = value;
+            bar02.value = value;
+
+            stage.update();
+        });
+
+
+        stage.addChild(bar01);
+        stage.addChild(bar02);
+        stage.update();
+    }
+</script>

@@ -32,107 +32,91 @@ this.creatine = this.creatine || {};
 (function() {
     "use strict";
 
-/**
- * Director is the class that controls all the game scenes. This involves 
- * storing the current scene that is running, receiving the next scene which 
- * will replace the current one, and applying the transition effect between the
- * old and the new scenes. When the current scene is replaced by a new one, the
- * Director will automatically remove the old scene from stage and add the new 
- * scene to it.
- * 
- * Only a single scene can be active at a time, however, Director can handle a
- * scene stack, allowing the addition of a new scene and keeping the old one in
- * the stack. This feature is specially useful to overlap scenes and creating, 
- * for example, a semi-transparent pause scene.
- * 
- * It is possible to specify a transition effect in any action of adding or
- * removing scenes, making possible to slide a new scene to the screen or to
- * make the old scene fade away. To know more about transitions, consult the
- * module <code>creatine.transitions</code>.
- *
- * <h4>Example</h4>
- * 
- *     // Create the Director
- *     var director = new creatine.Director(stage);
- * 
- *     // Adds the first scene
- *     director.push(new MyCustomScene());
- * 
- *     // Replaces the current scene
- *     director.replace(new OtherCustomScene());
- * 
- * @class Director
- * @constructor
- * @param {createjs.Stage} stage A <code>createjs.Stage</code> object.
-**/
-var Director = function(stage) {
-    this.initialize(stage);
-}
-var p = Director.prototype;
-
     /**
-     * The <code>createjs.Stage</code> instance.
-     *
-     * @property stage
-     * @type {createjs.Stage}
-     * @private
-    **/
-    p.stage = null;
-
-    /**
-     * The active scene. This variable can be viewed as the top of the scene
-     * stack.
-     *
-     * @property scene
-     * @type {Scene}
-     * @readonly
-    **/
-    p.scene = null;
-
-    /**
-     * The next scene which will replace the actual one. This variable is 
-     * required to store the next scene until the transition effect is done.
-     *
-     * @property nextScene
-     * @type {Scene}
-     * @readonly
-    **/
-    p.nextScene = null;
-
-    /**
-     * The stack of scenes. This list only stores the inactive scenes, use the 
-     * {{#crossLink "Director/scene:property"}}{{/crossLink}} to access the 
-     * active scene.
-     *
-     * @property sceneStack
-     * @type {list}
-     * @readonly
-    **/
-    p.sceneStack = null;
-
-    /**
-     * Indicates if a transition effect is running or not.
-     *
-     * @property sceneStack
-     * @type boolean
-     * @readonly
-    **/
-    p.inTransition = false;
-
-    /**
-     * Initialization method.
+     * Director is the class that controls all the game scenes. This involves 
+     * storing the current scene that is running, receiving the next scene 
+     * which will replace the current one, and applying the transition effect 
+     * between the old and the new scenes. When the current scene is replaced 
+     * by a new one, the Director will automatically remove the old scene from 
+     * stage and add the new scene to it.
      * 
-     * @method initialize
-     * @param {createjs.Stage} stage A createjs.Stage object.
-     * @protected
+     * Only a single scene can be active at a time, however, Director can 
+     * handle a scene stack, allowing the addition of a new scene and keeping 
+     * the old one in the stack. This feature is specially useful to overlap 
+     * scenes and creating, for example, a semi-transparent pause scene.
+     * 
+     * It is possible to specify a transition effect in any action of adding or
+     * removing scenes, making possible to slide a new scene to the screen or 
+     * to make the old scene fade away. To know more about transitions, consult
+     * the module <code>creatine.transitions</code>.
+     *
+     * <h4>Example</h4>
+     * 
+     *     // Create the Director
+     *     var director = new creatine.Director(stage);
+     * 
+     *     // Adds the first scene
+     *     director.push(new MyCustomScene());
+     * 
+     *     // Replaces the current scene
+     *     director.replace(new OtherCustomScene());
+     * 
+     * @class Director
+     * @constructor
+     * @param {createjs.Stage} stage A <code>createjs.Stage</code> object.
     **/
-    p.initialize = function(stage) {
+    var Director = function(stage) {   
+        /**
+         * The <code>createjs.Stage</code> instance.
+         *
+         * @property stage
+         * @type {createjs.Stage}
+         * @private
+        **/
         this.stage = stage;
+
+        /**
+         * The active scene. This variable can be viewed as the top of the 
+         * scene stack.
+         *
+         * @property scene
+         * @type {Scene}
+         * @readonly
+        **/
         this.scene = null;
+
+        /**
+         * The next scene which will replace the actual one. This variable is 
+         * required to store the next scene until the transition effect is 
+         * done.
+         *
+         * @property nextScene
+         * @type {Scene}
+         * @readonly
+        **/
         this.nextScene = null;
+
+        /**
+         * The stack of scenes. This list only stores the inactive scenes, use 
+         * the {{#crossLink "Director/scene:property"}}{{/crossLink}} to access
+         * the active scene.
+         *
+         * @property sceneStack
+         * @type {list}
+         * @readonly
+        **/
         this.sceneStack = [];
-        this.inTransition = null;
+
+        /**
+         * Indicates if a transition effect is running or not.
+         *
+         * @property sceneStack
+         * @type boolean
+         * @readonly
+        **/
+        this.inTransition = false;
     }
+    var p = Director.prototype;
 
     /**
      * Pauses the current scene and send it to the stack. The new scene will 
@@ -287,5 +271,5 @@ var p = Director.prototype;
         this.sceneStack = [];
     }
 
-creatine.Director = Director;
+    creatine.Director = Director;
 }());
