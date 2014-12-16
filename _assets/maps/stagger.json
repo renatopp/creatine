@@ -21,7 +21,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"../assets/isometric.png",
+         "image":"../_assets/img/isometric.png",
          "imageheight":384,
          "imagewidth":256,
          "margin":0,

@@ -73,6 +73,8 @@ this.creatine = this.creatine || {};
 
         for (var y=startY; y!=endY; y+=dirY) {
             for (var x=startX; x!=endX; x+=dirX) {
+        // for (var y=startY; y!=2; y+=dirY) {
+            // for (var x=startX; x!=2; x+=dirX) {
                 var i = (this.width*y + x)
 
                 var gid = this.data[i];
@@ -89,12 +91,56 @@ this.creatine = this.creatine || {};
                     tile.gotoAndStop(tileId);
                 }
 
-                tile.x = x*tW + (y%2)*tW/2;
-                tile.y = y*tH/2 + tH;
+                tile.x = tW*(x + (y%2)/2 - 0.5);
+                tile.y = tH*(y/2 + 1);
+
+
+                // tile.x = tW*(x+(y%2)/2);
+                // tile.y = tH + tH*y/2;
+
+
                 this.addChild(tile);
             }
         }
     }
 
+    /**
+     * Return the coord of a tile given the local position. 
+     * 
+     * Override this method on the child class.
+     *
+     * @method getTile
+     * @param {Integer} x The position x.
+     * @param {Integer} y The position y.
+     * @return {createjs.Point} The tile coord.
+    **/
+    p.getCoords = function(x, y) {
+        // convert to iso first
+        var x_ = Math.floor(x/this.map.tileWidth + y/this.map.tileHeight);
+        var y_ = Math.floor(-x/this.map.tileWidth + y/this.map.tileHeight);
+
+        // then from iso to stag
+        x = Math.floor((x_-y_)/2);
+        y = x_ + y_;
+        return new createjs.Point(x, y);
+    }
+
+    /**
+     * Return the top-left local position of a tile, considering its coords
+     * (column and row).
+     * 
+     * Override this method on the child class.
+     *
+     * @method getTile
+     * @param {Integer} x The column of the tile.
+     * @param {Integer} y The row of the tile.
+     * @return {createjs.Point} The top-left tile local position.
+    **/
+    p.getPosition = function(x, y) {
+        return new createjs.Point(
+            this.map.tileWidth*(x + (Math.abs(y)%2)/2 - 0.5),
+            this.map.tileHeight*(y/2 + 1)
+        )
+    }
     creatine.TMXStaggeredTileLayer = createjs.promote(TMXStaggeredTileLayer, "TMXTileLayer");
 }());

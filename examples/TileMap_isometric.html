@@ -30,6 +30,9 @@
     var stage = null;
     var map = null;
 
+
+    var box;
+
     function init() {
         canvas = document.getElementById('canvas');
         stage = new createjs.Stage(canvas);
@@ -42,16 +45,43 @@
     }
 
     function onLoadComplete() {
-        var map = new creatine.TMXMap(DATA);
+        map = new creatine.TMXMap(DATA);
         var bounds = map.getBounds();
 
-        map.regX = bounds.width/2;
         map.regY = bounds.height/2;
         map.x = canvas.width/2;
         map.y = canvas.height/2;
 
         stage.addChild(map);
         stage.update();
+
+        box = new createjs.Shape();
+        box.graphics.beginStroke('red').moveTo(0, -16).lineTo(32, -32)
+                                       .lineTo(64, -16).lineTo(32, 0)
+                                       .lineTo(0, -16).closePath();
+        stage.addChild(box);
+
+        stage.on('stagemousedown', function() {
+            layer = map.getLayerByName('Tile Layer 1');
+            point = map.globalToLocal(stage.mouseX, stage.mouseY);
+            point = layer.getCoords(point.x, point.y);
+
+            layer.setTile(point.x, point.y, Math.floor(Math.random()*15)+1)
+            stage.update();
+        })
+
+        createjs.Ticker.on('tick', function() {
+            // point = stage.globalToLocal(stage.mouseX, stage.mouseY);
+            layer = map.getLayerByName('Tile Layer 1');
+            point = map.globalToLocal(stage.mouseX, stage.mouseY);
+            point = layer.getCoords(point.x, point.y);
+            point = layer.getPosition(point.x, point.y);
+            point = map.localToGlobal(point.x, point.y);
+
+            box.x = point.x;
+            box.y = point.y;
+            stage.update();
+        })
     }
 </script>
 

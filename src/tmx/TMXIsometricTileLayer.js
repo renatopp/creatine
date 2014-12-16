@@ -62,8 +62,6 @@ this.creatine = this.creatine || {};
         var dirY = 1;
         var tW = this.map.tileWidth;
         var tH = this.map.tileHeight;
-        var offsetX = (tW/2)*(endX-1);
-        var offsetY = (tH);
 
         if (order == 'left-down' || order=='left-up') {
             startX = this.width-1; endX = 0; dirX = -1;
@@ -91,12 +89,48 @@ this.creatine = this.creatine || {};
                     tile.gotoAndStop(tileId);
                 }
 
-                tile.x = (x - y)*tW/2 + offsetX;
-                tile.y = (x + y)*tH/2 + offsetY;
+                tile.x = (x-y-1)*(this.map.tileWidth/2);
+                tile.y = (x+y+2)*(this.map.tileHeight/2);
+
                 this.addChild(tile);
             }
         }
     }
 
+    /**
+     * Return the coord of a tile given the local position. 
+     * 
+     * Override this method on the child class.
+     *
+     * @method getTile
+     * @param {Integer} x The position x.
+     * @param {Integer} y The position y.
+     * @return {createjs.Point} The tile coord.
+    **/
+    p.getCoords = function(x, y) {
+        return new createjs.Point(
+            Math.floor(x/this.map.tileWidth + y/this.map.tileHeight),
+            Math.floor(-x/this.map.tileWidth + y/this.map.tileHeight)
+        );
+    }
+
+    /**
+     * Return the top-left local position of a tile, considering its coords
+     * (column and row).
+     * 
+     * Override this method on the child class.
+     *
+     * @method getTile
+     * @param {Integer} x The column of the tile.
+     * @param {Integer} y The row of the tile.
+     * @return {createjs.Point} The top-left tile local position.
+    **/
+    p.getPosition = function(x, y) {
+        return new createjs.Point(
+            (x-y-1)*(this.map.tileWidth/2),
+            (x+y+2)*(this.map.tileHeight/2)
+
+        )
+    }
     creatine.TMXIsometricTileLayer = createjs.promote(TMXIsometricTileLayer, "TMXTileLayer");
 }());

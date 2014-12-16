@@ -173,6 +173,15 @@ this.creatine = this.creatine || {};
         this.properties = null;
 
         /**
+         * An object with tile properties defined by user.
+         *
+         * @property properties
+         * @type {Object}
+         * @readonly
+        **/
+        this.tileProperties = null;
+
+        /**
          * The spritesheet object loaded by this tileset.
          *
          * @property spritesheet
@@ -202,19 +211,20 @@ this.creatine = this.creatine || {};
      * @protected
     **/
     p._initialize = function(data) {
-        this.firstgid    = data['firstgid'];
-        this.name        = data['name'];
-        this.imagePath   = data['image'];
-        this.width       = data['imagewidth'];
-        this.height      = data['imageheight'];
-        this.tileWidth   = data['tilewidth'] || 32;
-        this.tileHeight  = data['tileheight'] || 32;
-        this.spacing     = data['spacing'] || 0;
-        this.margin      = data['margin'] || 0;
-        this.properties  = data['properties'];
-        this.tileOffsetX = 0;
-        this.tileOffsetY = 0;
-        this.animations  = {};
+        this.firstgid       = data['firstgid'];
+        this.name           = data['name'];
+        this.imagePath      = data['image'];
+        this.width          = data['imagewidth'];
+        this.height         = data['imageheight'];
+        this.tileWidth      = data['tilewidth'] || 32;
+        this.tileHeight     = data['tileheight'] || 32;
+        this.spacing        = data['spacing'] || 0;
+        this.margin         = data['margin'] || 0;
+        this.properties     = data['properties'];
+        this.tileProperties = data['tileproperties'];
+        this.tileOffsetX    = 0;
+        this.tileOffsetY    = 0;
+        this.animations     = {};
         
         if (data['tileoffset']) {
             this.tileOffsetX = data['tileoffset']['x'];

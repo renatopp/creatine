@@ -30,65 +30,65 @@
 this.creatine = this.creatine || {};
 
 (function() {
-"use strict";
-
-/**
- * TMXObjectLayer represents an Object Group in TMX maps.
- *
- * @class TMXObjectLayer
- * @param {creatine.TMXMap} map The map object.
- * @param {Object} data The data object (from tmx format).
- * @constructor
-**/
-var TMXObjectLayer = function(map, data) {
-    this.initialize(map, data);
-}
-var p = TMXObjectLayer.prototype;
+    "use strict";
 
     /**
-     * Reference to the TMX map.
+     * TMXObjectLayer represents an Object Group in TMX maps.
      *
-     * @property map
-     * @type {creatine.TMXMap}
-     * @readonly
+     * @class TMXObjectLayer
+     * @param {creatine.TMXMap} map The map object.
+     * @param {Object} data The data object (from tmx format).
+     * @constructor
     **/
-    p.map = null;
+    var TMXObjectLayer = function(map, data) {
+        /**
+         * Reference to the TMX map.
+         *
+         * @property map
+         * @type {creatine.TMXMap}
+         * @readonly
+        **/
+        this.map = null;
 
-    /**
-     * The name of the layer.
-     *
-     * @property name
-     * @type {String}
-     * @readonly
-    **/
-    p.name = null;
+        /**
+         * The name of the layer.
+         *
+         * @property name
+         * @type {String}
+         * @readonly
+        **/
+        this.name = null;
 
-    /**
-     * List of objects in the layer.
-     *
-     * @property objects
-     * @type {Array}
-     * @readonly
-    **/
-    p.objects = null;
+        /**
+         * List of objects in the layer.
+         *
+         * @property objects
+         * @type {Array}
+         * @readonly
+        **/
+        this.objects = null;
 
-    /**
-     * Is the layer visible?
-     *
-     * @property visible
-     * @type {Boolean}
-     * @readonly
-    **/
-    p.visible = null;
+        /**
+         * Is the layer visible?
+         *
+         * @property visible
+         * @type {Boolean}
+         * @readonly
+        **/
+        this.visible = null;
 
-    /**
-     * Opacity the layer.
-     *
-     * @property alpha
-     * @type {Float}
-     * @readonly
-    **/
-    p.alpha = null;
+        /**
+         * Opacity the layer.
+         *
+         * @property alpha
+         * @type {Float}
+         * @readonly
+        **/
+        this.alpha = null;
+
+        this._initialize(map, data);
+    }
+    var p = TMXObjectLayer.prototype;
 
     /**
      * Initialization method.
@@ -98,7 +98,7 @@ var p = TMXObjectLayer.prototype;
      * @param {Object} data The data object (from tmx format).
      * @protected
     **/
-    p.initialize = function(map, data) {
+    p._initialize = function(map, data) {
         if (!map) return;
 
         this.map     = map;
@@ -108,5 +108,5 @@ var p = TMXObjectLayer.prototype;
         this.alpha   = data['opacity'];
     }
 
-creatine.TMXObjectLayer = TMXObjectLayer;
+    creatine.TMXObjectLayer = TMXObjectLayer;
 }());

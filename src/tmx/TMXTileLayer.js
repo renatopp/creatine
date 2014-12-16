@@ -126,13 +126,79 @@ this.creatine = this.creatine || {};
     }
 
     /**
-     * Create the tiles. Override this method on the child class.
+     * Create the tiles.
+     * 
+     * Override this method on the child class.
      * 
      * @method _createTiles
      * @protected
     **/
     p._createTiles = function() {
         throw new Error('TMXTileLayer._createTiles not implemented.');
+    }
+
+    /**
+     * Return the tile value, given a coord of a tile. 
+     *
+     * @method getTile
+     * @param {Integer} x The column of a tile.
+     * @param {Integer} y The row of a tile.
+     * @return {Integer} The tile id.
+    **/
+    p.getTile = function(x, y) {
+        return this.data[(this.width*y + x)]
+    }
+
+    /**
+     * Set the tile value, given a coord of a tile. 
+     *
+     * @method getTile
+     * @param {Integer} x The column of a tile.
+     * @param {Integer} y The row of a tile.
+     * @param {Integer} gid The global ID.
+    **/
+    p.setTile = function(x, y, gid) {
+        var idx = (this.width*y + x);
+
+        var tileset = this.map.getTilesetByGid(gid);
+        var tileId = gid-tileset.firstgid;
+        var tile = this.getChildAt(idx)
+
+        this.data[idx] = tileId;
+        if (tileset.animations['anim-'+(tileId)]) {
+            tile.gotoAndPlay('anim-'+(tileId));
+        } else {
+            tile.gotoAndStop(tileId);
+        }
+    }
+
+    /**
+     * Return the coord of a tile given the local position. 
+     * 
+     * Override this method on the child class.
+     *
+     * @method getTile
+     * @param {Integer} x The position x.
+     * @param {Integer} y The position y.
+     * @return {createjs.Point} The tile coord.
+    **/
+    p.getCoords = function(x, y) {
+        throw new Error('TMXTileLayer.getCoords not implemented.');
+    }
+
+    /**
+     * Return the top-left local position of a tile, considering its coords
+     * (column and row).
+     * 
+     * Override this method on the child class.
+     *
+     * @method getTile
+     * @param {Integer} x The column of the tile.
+     * @param {Integer} y The row of the tile.
+     * @return {createjs.Point} The top-left tile local position.
+    **/
+    p.getPosition = function(x, y) {
+        throw new Error('TMXTileLayer.getPosition not implemented.');
     }
 
     creatine.TMXTileLayer = createjs.promote(TMXTileLayer, "Container");

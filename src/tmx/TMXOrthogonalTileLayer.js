@@ -96,5 +96,36 @@ this.creatine = this.creatine || {};
         }
     }
 
+    /**
+     * Return the coord of a tile given the local position. 
+     *
+     * @method getTile
+     * @param {Integer} x The position x.
+     * @param {Integer} y The position y.
+     * @return {createjs.Point} The tile coord.
+    **/
+    p.getCoords = function(x, y) {
+        return new createjs.Point(
+            Math.floor(x/this.map.tileWidth),
+            Math.floor(y/this.map.tileHeight)
+        );
+    }
+
+    /**
+     * Return the top-left local position of a tile, considering its coords
+     * (column and row).
+     * 
+     * @method getTile
+     * @param {Integer} x The column of the tile.
+     * @param {Integer} y The row of the tile.
+     * @return {createjs.Point} The top-left tile local position.
+    **/
+    p.getPosition = function(x, y) {
+        return new createjs.Point(
+            Math.floor(x*this.map.tileWidth),
+            Math.floor(y*this.map.tileHeight)
+        );
+    }
+
     creatine.TMXOrthogonalTileLayer = createjs.promote(TMXOrthogonalTileLayer, "TMXTileLayer");
 }());
