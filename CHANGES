@@ -4,6 +4,7 @@ Version 0.2.0 [NEXT]
 - change: architecture following the new CreateJS system (issue #17).
 - change: source files organized into folders (issue #7).
 - add: entity-component-system (issue #4).
+- add: a jukebox system.
 - add: a storage helper to handle localStorage.
 - add: time maps, requiring the next version of EaselJS (issue #5).
 - add: sizers now consider the children scale on transition (issue #12).

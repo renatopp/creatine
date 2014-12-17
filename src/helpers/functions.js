@@ -56,4 +56,8 @@ creatine.clip = function(v, min, max) {
     return Math.max(Math.min(v, max), min);
 }
 
+creatine.randomInt = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 })();
