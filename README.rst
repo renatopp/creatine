@@ -9,10 +9,11 @@ TweenJS. Despite its awesomeness, these libraries do not focus on game
 development, thus, do not provide important structures and algorithms commonly 
 used on games.
 
-Creatine gives that power up to CreateJS, providing structures and algorithms 
-to scene management, scene transitions, layout management, and a lot more.
+**Creatine** gives that power up to CreateJS, providing structures and 
+algorithms to scene management, scene transitions, layout management, and a lot
+more.
 
-- http://guineashots.com/creatine
+- http://creatine.guineashots.com
 
 
 -------------
@@ -32,6 +33,8 @@ API:
 Example
 -------
 
+- http://creatine.guineashots.com/examples
+
 Check it out the createjs-boilerplate to see in practice the integration with 
 CreateJS:
 
@@ -44,15 +47,16 @@ Current Features
 
 Focusing on Game Development, creatine adds several new features such as:
 
-- Scene Management;
-- Scene Transitions;
-- Layout Management;
-- Canvas Resizing and other Display options;
-- Device Detection;
-- Visual Components, such as:
-    - Flexible Bitmaps;
-    - Progress Bars;
-    - Discrete Progress Bar;
+- **Scene management**: manage scene and apply transition effects;
+- **Layout management**: auto organize elements on the screen;
+- **Helper classes and functions**: display, device detection, jukebox, 
+  storage;
+- **Tile map**: read TMX tile maps directly from Tiled, with support to all
+  map projections;
+- **Entity component system**: basic ECS elements;
+- **Custom visual components**: flexible bitmap, progress bars, discrete 
+  progress bar;
+
 
 ---------------
 What is coming?
@@ -60,14 +64,11 @@ What is coming?
 
 **features**:
 
-- Orthogonal Tile Map (readind director from Tiled);
 - Integrated physics engine (using box2d);
-- A ScoreBoard system;
+- Parallax helper;
+- Particles;
+- WebGL support;
 
-**docs**:
-
-- Examples on guide;
-- An integrated example application (similar to the FlixelPowerTools);
 
 --------------------------------
 Not sure when (or if) is coming?
@@ -76,10 +77,10 @@ Not sure when (or if) is coming?
 - UI elements with buttons, dialogs, etc;
 - Keyboard management;
 
+
 -------------------
 What is not coming?
 -------------------
 
-- Behavior Trees implementation, use Behavior3JS instead;
-- A* path finding, use easystar instead;
-- ~~Keyboard management, use keymaster instead~~;
+- Behavior Trees, use **Behavior3JS** instead;
+- A* path finding, use **easystar** instead;
