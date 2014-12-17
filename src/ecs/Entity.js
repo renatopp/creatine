@@ -53,7 +53,7 @@ this.creatine = this.creatine || {};
          * The Entity ID.
          *
          * @property id
-         * @type {Striing}
+         * @type {String}
          * @readonly
         **/
         this.id = null;
