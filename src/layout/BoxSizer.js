@@ -286,6 +286,9 @@ this.creatine = this.creatine || {};
                 item.x = area.x+area.width-w;
                 break;                
         }
+        
+        item.x += item.regX;
+        item.y += item.regY;
     }
 
     creatine.BoxSizer = BoxSizer;

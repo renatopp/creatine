@@ -5,8 +5,9 @@ Version 0.2.0 [NEXT]
 - change: source files organized into folders (issue #7).
 - add: entity-component-system (issue #4).
 - add: a storage helper to handle localStorage.
-- add: sizer now consider the children scale on transition (issue #12).
 - add: time maps, requiring the next version of EaselJS (issue #5).
+- add: sizers now consider the children scale on transition (issue #12).
+- add: sizers now consider the children registration point (issue #13).
 - fix: minor fixes on flex bitmap (issue #14).
 - fix: Scroll transition doesn't setting the inScene position (issue #2).
 - fix: MoveOut transition doesn't setting the inScene position (issue #8).
