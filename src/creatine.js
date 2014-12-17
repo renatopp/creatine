@@ -42,37 +42,37 @@
 this.creatine = this.creatine || {};
 
 (function() {
-"use strict";
+    "use strict";
 
-// injected by build process
-creatine.version = /*version*/"0.2.0dev";
-creatine.buildDate = /*date*/"Wed, 10 Dec 2014 12:51:28 GMT";
+    // injected by build process
+    creatine.version = /*version*/"0.2.0dev";
+    creatine.buildDate = /*date*/"Wed, 17 Dec 2014 02:42:29 GMT";
 
-// Direction and Anchor constants
-creatine.LEFT          = 1;
-creatine.RIGHT         = 2;
-creatine.TOP           = 3;
-creatine.BOTTOM        = 4;
-creatine.TOP_LEFT      = 5;
-creatine.TOP_RIGHT     = 6;
-creatine.CENTER        = 7;
-creatine.BOTTOM_LEFT   = 8;
-creatine.BOTTOM_RIGHT  = 9;
+    // Direction and Anchor constants
+    creatine.LEFT          = 1;
+    creatine.RIGHT         = 2;
+    creatine.TOP           = 3;
+    creatine.BOTTOM        = 4;
+    creatine.TOP_LEFT      = 5;
+    creatine.TOP_RIGHT     = 6;
+    creatine.CENTER        = 7;
+    creatine.BOTTOM_LEFT   = 8;
+    creatine.BOTTOM_RIGHT  = 9;
 
-// Axis constants
-creatine.HORIZONTAL    = 10;
-creatine.VERTICAL      = 11;
+    // Axis constants
+    creatine.HORIZONTAL    = 10;
+    creatine.VERTICAL      = 11;
 
-// Filling constants
-creatine.LEFT_TO_RIGHT = 12;
-creatine.RIGHT_TO_LEFT = 13;
-creatine.TOP_TO_BOTTOM = 14;
-creatine.BOTTOM_TO_TOP = 15;
+    // Filling constants
+    creatine.LEFT_TO_RIGHT = 12;
+    creatine.RIGHT_TO_LEFT = 13;
+    creatine.TOP_TO_BOTTOM = 14;
+    creatine.BOTTOM_TO_TOP = 15;
 
-// Resizing constants
-creatine.STRETCH       = 16;
-creatine.FIT           = 17;
-creatine.FILL          = 18;
-creatine.NOSCALE       = 19;
+    // Resizing constants
+    creatine.STRETCH       = 16;
+    creatine.FIT           = 17;
+    creatine.FILL          = 18;
+    creatine.NOSCALE       = 19;
 
 })();

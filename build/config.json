@@ -4,6 +4,7 @@
         "../src/helpers/functions.js",
         "../src/helpers/Device.js",
         "../src/helpers/Display.js",
+        "../src/helpers/Storage.js",
         "../src/scene/Director.js",
         "../src/scene/Scene.js",
         "../src/layout/BoxSizer.js",
