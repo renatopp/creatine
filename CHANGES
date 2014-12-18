@@ -1,5 +1,5 @@
-Version 0.2.0 [NEXT]
-====================
+Version 0.2.0 [Dec 18, 2014]
+============================
 
 - change: architecture following the new CreateJS system (issue #17).
 - change: source files organized into folders (issue #7).

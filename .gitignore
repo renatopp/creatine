@@ -30,6 +30,17 @@ build/output*
 
 
 # --------------
-docs/behavior3js
-libs/b3editor*
-libs/b3view*
+.DS_Store
+build/output/
+build/tmp/
+docs/**/
+*TMP*
+node_modules/
+.idea/
+*.sublime-project
+*.sublime-workspace
+config.local.json
+*[\<\>\:\"\/\\\|\?\*]*
+npm-debug.log
+build/.sass-cache
+main.css
