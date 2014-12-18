@@ -102,7 +102,7 @@ this.creatine = this.creatine || {};
     p._initialize = function(map, data) {
         if (!map) return;
 
-        this.Bitmap_constructor(data['image']);
+        this.Bitmap_constructor(data['image']||null);
 
         this.map       = map;
         this.name      = data['name'];

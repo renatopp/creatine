@@ -251,10 +251,7 @@ this.creatine = this.creatine || {};
             } else if (layerType == 'imagelayer') {
                 var layer = new creatine.TMXImageLayer(this, data['layers'][i])
 
-                // check for empty image
-                if (layer.image.width > 0) {
-                    this.addChild(layer);
-                }
+                this.addChild(layer);
                 this.layers.push(layer);
             }
         }
