@@ -113,7 +113,7 @@ this.creatine = this.creatine || {};
     p.getBounds = function() {
         var w = this.image.width*this.scaleX;
         var h = this.image.height*this.scaleY;
-        return this._rectangle.initialize(0, 0, w, h);
+        return this._rectangle.setValues(0, 0, w, h);
     }
 
     creatine.FlexBitmap = createjs.promote(FlexBitmap, "Bitmap");
