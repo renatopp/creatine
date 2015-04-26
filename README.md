@@ -32,9 +32,9 @@ For creatine 1.0.0 and next releases, I'm trying to keep things more data-driven
 
 You may be interested in some other libraries to work together with creatine:
 
-- For Behavior Trees, use (**Behavior3JS**)[http://behavior3js.guineashots.com]
-- For Finite State Machines, use (**StateJS**)[http://statejs.guineashots.com]
-- For A* path finding, use (**EasystarJs**)[http://easystarjs.com/]
+- For Behavior Trees, use [**Behavior3JS**](http://behavior3js.guineashots.com)
+- For Finite State Machines, use [**StateJS**](http://statejs.guineashots.com)
+- For A* path finding, use [**EasystarJs**](http://easystarjs.com/)
 
 
 ## You may see in future
