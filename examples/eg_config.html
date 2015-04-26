@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body>
+  <p id="result1">Results1: </p>
+  <p id="result2">Results2: </p>
+  <p id="result3">Results3: </p>
+
+  <div id="game" style="display:none"></div>
+</body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+
+<script type="text/javascript">
+
+var log = function(id, value) { $('#'+id).html($('#'+id).html() + JSON.stringify(value) + '<br>'); }
+
+
+game1 = new tine.Game(null, {
+  preload:function() {
+    game1.load.image('_', 'assets/img/daisy.png');
+  }, 
+  create:function() {
+    log('result1', game1.config);
+    log('result1', game1.load.get('_').src);
+  }
+});
+
+var config = {container:'game', resources:{base_path:'./assets/'}};
+game2 = new tine.Game(config, {
+  preload:function() {
+    game2.load.image('_', 'img/daisy.png');
+  }, 
+  create:function() {
+    log('result2', game2.config);
+    log('result2', game2.load.get('_').src);
+  }
+});
+
+game3 = new tine.Game('eg_config.json', {
+  preload:function() {
+    game3.load.image('_', 'daisy.png');
+  }, 
+  create:function() {
+    log('result3', game3.config);
+    log('result3', game3.load.get('_').src);
+  }
+});
+
+
+</script>

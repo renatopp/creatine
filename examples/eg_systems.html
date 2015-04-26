@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+
+<script type="text/javascript">
+
+var game = new tine.Game({framerate:1});
+
+var plugin = new tine._plugin({
+  initialize : function() { console.log('initialize'); },
+  enter      : function() { console.log('enter'); },
+  pause      : function() { console.log('pause'); },
+  resume     : function() { console.log('resume'); },
+  exit       : function() { console.log('exit'); },
+  preEnter   : function() { console.log('preEnter'); },
+  prePause   : function() { console.log('prePause'); },
+  preResume  : function() { console.log('preResume'); },
+  preExit    : function() { console.log('preExit'); },
+  // update  : function() { console.log('update'); }
+})
+
+game.plugins.add('teste', plugin);
+console.log(game.plugins.get('teste'));
+game.plugins.remove('teste');
+</script>

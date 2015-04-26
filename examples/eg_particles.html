@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/stat.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+<script src="../src/functions.js"></script>
+<script src="../src/particles/Emitter.js"></script>
+
+<script type="text/javascript">
+var stats = new Stats();
+stats.setMode(0); // 0: fps, 1: ms
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+document.body.appendChild( stats.domElement );
+
+var emitter, foreground, last=1;
+var game = new tine.Game({framerate:2000}, {
+  preload: function() {
+    game.load.image('particle1', 'assets/img/particle_red.png');
+    game.load.image('particle2', 'assets/img/particle_blue.png');
+    game.load.image('particle3', 'assets/img/particle_green.png');
+  },
+  create: function() {
+    var object1 = game.create.bitmap('particle1', {regX:'center', regY:'center'});
+    var object2 = game.create.bitmap('particle2', {regX:'center', regY:'center'});
+    var object3 = game.create.bitmap('particle3', {regX:'center', regY:'center'});
+    var object4 = game.create.shape();
+    object4.graphics.f('red').dc(0, 0, 15);
+    
+    // emitter = new tine.Emitter([object1, object2], 1000);
+    emitter = new tine.Emitter([object1, object1, object1, object2, object3], 5000);
+    emitter.compositeOperation = 'lighter';
+    emitter.emissionRate = 1000
+    emitter.angle = -90;
+    emitter.angleVar = 10;
+    emitter.gravityY = 5;
+    emitter.life = 2000;
+    emitter.tanAccel = -8;
+    emitter.radAccel = 0.6;
+    // emitter.emitXVar = 200;
+    emitter.startScale = 0.3;
+    emitter.speed = 200;
+    game.stage.addChild(emitter);
+  },
+  update: function() {
+    stats.begin();
+    emitter.update(game.time.delta);
+
+    if (game.keyboard.isPressed(tine.keys.SPACE)) {
+      emitter.start(-1, game.mouse.x, game.mouse.y);
+    }
+
+    stats.end();
+  }
+});
+</script>
+
+
+<!-- 
+  maxRadius
+  maxRadiusVar
+  minRadius
+  minRadiusVar
+  degSec
+  degSecVar
+ -->

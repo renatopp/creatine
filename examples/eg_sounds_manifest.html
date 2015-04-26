@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+<script src="../src/helpers/soundManager.js"></script>
+<script src="../src/helpers/resourceManager.js"></script>
+
+<fieldset>
+  <label>Volume</label>
+  <input id="mastervolume" type="range" min="0" max="1" step="0.05" value="0.5">
+</fieldset>
+<fieldset>
+  <button id="mute">Toogle Mute</button>
+</fieldset>
+
+
+
+<script type="text/javascript">
+
+
+
+var manifest = [
+  {id:'music', src:'assets/sfx/bionic.mp3', data:{group:'effects'}, type:'audio'},
+  {id:'', src:'assets/sfx/fx_mixdown.mp3', data:[
+      {id:'as1', start:1000, duration:1000, group:'effects'},
+      {id:'as2', start:8000, duration:500, group:'effects'},
+      {id:'as3', start:17000, duration:1000, group:'effects'}
+    ], type:'audiosprite'}
+]
+
+var game = new tine.Game({project:'test_persistence', resources:{manifest:manifest}}, {boot:boot, preload:preload, create:create});
+
+function boot() {
+  $('#mastervolume').val(game.sound.volume);
+  $('#mute').val(game.sound.isMute());
+
+  $('#mastervolume').on('input', function(d) {
+    game.sound.volume = parseFloat(d.target.value);
+  });
+  $('#mute').on('click', function(d) {
+    game.sound.toogleMute();
+  });
+}
+
+function preload() {}
+function create() {
+  game.stage.on('stagemousedown', function() {
+    game.sound.play('effects');
+  })
+}
+
+</script>

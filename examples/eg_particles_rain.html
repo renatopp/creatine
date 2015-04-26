@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/stat.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+<script src="../src/particles/Emitter.js"></script>
+<script src="../src/particles/Particle.js"></script>
+
+<script type="text/javascript">
+var stats = new Stats();
+stats.setMode(0); // 0: fps, 1: ms
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+document.body.appendChild( stats.domElement );
+
+var emitter, foreground, last=1, wait=1;
+var game = new tine.Game(null, {
+  preload: function() {
+    game.load.image('particle', 'assets/img/particle_base.png');
+  },
+  create: function() {
+    // shape1.graphics.f('blue').r(-10, -10, 10, 10),//dc(0, 0, 5)
+    // shape1.graphics.f('white').dc(0, 0, 2)
+
+    // rain
+    var shape1 = game.create.shape({x:400, y:300});
+    shape1.graphics.f('white').ss(1).s('white').mt(0,0).lt(-5, 9)
+    emitter = new tine.Emitter(shape1, 1000);
+    emitter.burstAmount = 30;
+    emitter.life = 2;
+    emitter.lifeVar = 1;
+    emitter.emitX = 500;
+    emitter.emitY = -25;
+    emitter.xVar = 500;
+    emitter.angle = 110;
+    emitter.angleVar = 0;
+    emitter.gravityY = 0;
+    emitter.speed = 1000;
+    emitter.emissionRate = 300;
+    game.stage.addChild(emitter);
+
+    // thunder
+    foreground = game.create.shape({alpha:0});
+    foreground.graphics.f('white').r(0, 0, game.canvas.width, game.canvas.height);
+    game.stage.addChild(foreground);
+
+    emitter.start(-1);
+
+  },
+  update: function() {
+    stats.begin();
+    emitter.update(game.time.fdelta);
+
+    wait -= game.time.fdelta;
+    if (wait < 0) {
+      wait = Math.random()*8+2;
+      createjs.Tween.get(foreground)
+        .to({alpha:1}, 200)
+        .to({alpha:0}, Math.random()*100)
+        .to({alpha:1}, Math.random()*100)
+        .wait(50)
+        .to({alpha:0}, Math.random()*50)
+    }
+
+    // if (game.mouse.isPressed(tine.buttons.LEFT)) {
+    if (game.keyboard.isPressed(tine.keys.SPACE)) {
+      emitter.burst(game.mouse.x, game.mouse.y);
+    }
+
+    stats.end();
+  }
+});
+</script>

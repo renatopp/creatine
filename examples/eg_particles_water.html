@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/stat.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+<script src="../src/particles/Emitter.js"></script>
+<script src="../src/particles/Particle.js"></script>
+
+<script type="text/javascript">
+var stats = new Stats();
+stats.setMode(0); // 0: fps, 1: ms
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+document.body.appendChild( stats.domElement );
+
+var emitter, foreground, last=1;
+var game = new tine.Game({framerate:2000}, {
+  preload: function() {
+    game.load.image('particle', 'assets/img/particle_green.png');
+  },
+  create: function() {
+    var object = game.create.bitmap('particle', {
+      regX:'center', regY:'center'//, scaleX:0.3, scaleY:0.3
+    });
+    // var object = game.create.shape();
+    // object.graphics.f('red').dc(0, 0, 15);
+    game.stage.addChild(object);
+    
+    emitter = new tine.Emitter(object, 10000);
+
+    // emitter.life = 1.0;
+    // emitter.angle = -90;
+    // emitter.angleVar = 15;
+    // emitter.dirXVar = 0.1;
+    // emitter.dirYVar = 0.1;
+    // emitter.gravityY = 2;
+    // emitter.speed = 400;
+    emitter.life = 1.0;
+    emitter.angle = 0;
+    emitter.angleVar = 360;
+    emitter.endAlpha = 0.2;
+    emitter.xVar = 200;
+    emitter.dirXVar = 0.1;
+    emitter.dirYVar = 0.1;
+    emitter.gravityY = -2;
+    emitter.speed = 300;
+
+
+    // emitter.emissionRate = 1500;
+    emitter.emissionRate = 2000;
+    game.stage.addChild(emitter);
+    // emitter.start(.0);
+
+  },
+  update: function() {
+    stats.begin();
+    emitter.update(game.time.fdelta);
+
+    // if (game.mouse.isPressed(tine.buttons.LEFT)) {
+    if (game.keyboard.isPressed(tine.keys.SPACE)) {
+      emitter.start(20.0, game.mouse.x, game.mouse.y);
+    }
+
+    stats.end();
+  }
+});
+</script>

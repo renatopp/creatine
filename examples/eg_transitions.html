@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+
+<script type="text/javascript">
+
+var e = createjs.Ease;
+
+var dirs = ['top', 'left', 'bottom', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright'];
+var dirs2 = ['top', 'left', 'bottom', 'right'];
+var eases = [e.circIn, e.circInOut, e.circOut, e.bounceIn, e.bounceInOut, e.bounceOut, e.elasticIn, e.elasticInOut, e.elasticOut, e.linear, e.sineIn, e.sineInOut, e.sineOut]
+
+var c = 0;
+var v = 0;
+game = new tine.Game(null, {
+  create: function() {
+    game.director.add('0', new RandomColorScene())
+    game.director.add('1', new RandomColorScene())
+    game.director.remove('1')
+    game.director.replace(new RandomColorScene());
+    game.director.replace('0', rt());
+  },
+  update: function() {
+    if (game.mouse.isReleased(tine.buttons.LEFT)) {
+      game.director.replace(new RandomColorScene(), rt());
+    }
+
+    if (game.keyboard.isReleased(tine.keys.Q)) {
+      game.director.push(new RandomColorScene(), rt());
+
+    } else if (game.keyboard.isReleased(tine.keys.W)) {
+      game.director.pop(rt());
+    }
+  }
+});
+
+function rt() {
+  var i =tine.randomInt(0, eases.length-1)
+  var d = dirs[tine.randomInt(0, dirs.length-1)];
+  var d2 = dirs2[tine.randomInt(0, dirs2.length-1)];
+  var e = eases[i];
+  var t = tine.randomInt(350, 1500);
+  return new tine.transitions.ZoomInOut(e, t)
+}
+
+function randomcolor() {
+    return 'hsla(' + (Math.random() * 360) + ', 100%, 70%, 1)';
+}
+var RandomColorScene = tine._scene({
+  initialize: function() {
+    this.id = v;
+
+    var background =  game.create.shape();
+    background.graphics.f(randomcolor()).r(0, 0, 800, 600);
+    this.addChild(background);
+
+    var text = new createjs.Text(''+(v++), '32px arial', 'black');
+    text.x = 30;
+    text.y = 30;
+    this.addChild(text);
+  }
+})
+
+</script>

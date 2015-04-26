@@ -1,0 +1,9 @@
+{
+  "framerate": 30,
+  "images": ["assets/img/grant.png"],
+  "frames": {"regX": 82, "height": 292, "count": 64, "regY": 0, "width": 165},
+  "animations": {
+    "run": [0, 25, "run", 1.5],
+    "jump": [26, 63, "jump"]
+  }
+}

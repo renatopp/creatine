@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta charset="utf8"><title></title></head><body>
+
+<textarea id="touches" cols="100" rows="12"></textarea><br>
+<div id="canvas"></div>
+
+</body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+<!-- <script src="../src/inputs/TouchManager.js"></script> -->
+
+<style type="text/css">
+  html, body {background-color: white}
+</style>
+
+<script type="text/javascript">
+
+function h(x){
+  return x.toFixed(2).replace(/\.?0*$/,'');
+}
+
+var game = new tine.Game({background_color:'red', container:'canvas', width:400, height:300}, {
+
+  update: function() {
+    var s = 'DATA: ('+game.touch.touches.length+')\n';
+    for (var i=0; i<game.touch.touches.length; i++) {
+      var t = game.touch.touches[i];
+
+      s += '['+t.identifier+'] '
+      s += t.down+' '+h(t.x)+' '+h(t.y)+' '+h(t.force)+' '+h(t.radiusX)+' '+h(t.radiusY)+' '+h(t.rotation)+'\n';
+      }
+    $('#touches').val(s)
+
+    // console.log(game.touch.getDownTouches())
+  }
+});
+
+
+
+</script>

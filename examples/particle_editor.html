@@ -1,0 +1,256 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/stat.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+<script src="assets/libs/datgui.js"></script>
+<script src="../src/functions.js"></script>
+<script src="../src/particles/Emitter.js"></script>
+
+<script type="text/javascript">
+var stats = new Stats();
+stats.setMode(0); // 0: fps, 1: ms
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+document.body.appendChild( stats.domElement );
+
+function randomNormal(mean, variance) {
+  if (mean == undefined)
+    mean = 0.0;
+  if (variance == undefined)
+    variance = 1.0;
+  var V1, V2, S;
+  do {
+    var U1 = Math.random();
+    var U2 = Math.random();
+    V1 = 2 * U1 - 1;
+    V2 = 2 * U2 - 1;
+    S = V1 * V1 + V2 * V2;
+  } while (S > 1);
+
+  X = Math.sqrt(-2 * Math.log(S) / S) * V1;
+  X = mean + Math.sqrt(variance) * X;
+  return X;
+}
+
+
+var Text = function() {
+  this.maxParticles = 100;
+  this.image = 'particle_base';
+  this.additive = false;
+  this.emissionRate = 100;
+  this.angle = 270;
+  this.angleVar = 25;
+  this.emitX = 400;
+  this.emitXVar = 0;
+  this.emitY = 300;
+  this.emitYVar = 0;
+  this.life = 1000;
+  this.lifeVar = 0;
+  this.startAlpha = 1;
+  this.startAlphaVar = 0;
+  this.endAlpha = 0;
+  this.endAlphaVar = 0;
+  this.startRotation = 0;
+  this.startRotationVar = 0;
+  this.endRotation = 0;
+  this.endRotationVar = 0;
+  this.startScale = 0.3;
+  this.startScaleVar = 0;
+  this.endScale = 0.3;
+  this.endScaleVar = 0;
+
+  this.speed = 100;
+  this.speedVar = 0;
+  this.gravityX = 0;
+  this.gravityY = 0;
+  this.radAccel = 0;
+  this.radAccelVar = 0;
+  this.tanAccel = 0;
+  this.tanAccelVar = 0;
+
+  var self = this;
+  this.pause = function() {
+    emitter.pause =! emitter.pause;
+  }
+  this.random = function() {
+    this.maxParticles     = tine.randomInt(10, 1000);
+    this.image            = 'particle_'+['base','red','blue','green'][tine.randomInt(0, 3)];
+    this.additive         = [false, true][tine.randomInt(0, 1)];
+    this.emissionRate     = tine.randomInt(100, 2000);
+    this.angle            = tine.randomInt(0, 360);
+    this.angleVar         = tine.randomInt(0, 360);
+    this.emitX            = 400;
+    this.emitXVar         = 0;
+    this.emitY            = 300;
+    this.emitYVar         = 0;
+    this.life             = tine.randomInt(500, 3000);
+    this.lifeVar          = tine.randomInt(100, 2000);
+    this.startAlpha       = Math.random();
+    this.startAlphaVar    = Math.random();
+    this.endAlpha         = Math.random();
+    this.endAlphaVar      = Math.random();
+    this.startRotation    = tine.randomInt(0, 360);
+    this.startRotationVar = tine.randomInt(0, 360);
+    this.endRotation      = tine.randomInt(0, 360);
+    this.endRotationVar   = tine.randomInt(0, 360);
+    this.startScale       = Math.random();
+    this.startScaleVar    = Math.random();
+    this.endScale         = Math.random();
+    this.endScaleVar      = Math.random();
+    this.speed            = tine.randomInt(100, 1000);
+    this.speedVar         = tine.randomInt(10, 1000);
+    this.gravityX         = tine.randomInt(0, 5);
+    this.gravityY         = tine.randomInt(0, 5);
+    this.radAccel         = tine.randomInt(0, 5);
+    this.radAccelVar      = tine.randomInt(0, 5);
+    this.tanAccel         = tine.randomInt(0, 5);
+    this.tanAccelVar      = tine.randomInt(0, 5);
+    updateEmitterFull();
+  }
+  this.reset = function() {
+    updateEmitterFull();
+  }
+}
+
+
+var updateEmitterFull = function() {
+  replaceEmitter(text.image, text.maxParticles);
+  updateEmitter();
+}
+var replaceEmitter = function(image, maxParticles) {
+  var p = (emitter?emitter.pause:false);
+  var s = game.create.bitmap(image, {regX:'center', regY:'center'});
+
+  if (emitter) {
+    emitter.removeAllChildren();
+    emitter._initialize(s, maxParticles);
+  } else {
+    emitter = new tine.Emitter(s, maxParticles);
+    emitter.pause = false;
+  }
+}
+var updateEmitter = function() {
+  emitter.compositeOperation = (text.additive?'lighter':null);
+  emitter.emissionRate = text.emissionRate;
+  emitter.emitX = text.emitX;
+  emitter.emitXVar = text.emitXVar;
+  emitter.emitY = text.emitY;
+  emitter.emitYVar = text.emitYVar;
+  emitter.angle = text.angle;
+  emitter.angleVar = text.angleVar;
+  emitter.life = text.life;
+  emitter.lifeVar = text.lifeVar;
+  emitter.startAlpha = text.startAlpha;
+  emitter.startAlphaVar = text.startAlphaVar;
+  emitter.endAlpha = text.endAlpha;
+  emitter.endAlphaVar = text.endAlphaVar;
+  emitter.startRotation = text.startRotation;
+  emitter.startRotationVar = text.startRotationVar;
+  emitter.endRotation = text.endRotation;
+  emitter.endRotationVar = text.endRotationVar;
+  emitter.startScale = text.startScale;
+  emitter.startScaleVar = text.startScaleVar;
+  emitter.endScale = text.endScale;
+  emitter.endScaleVar = text.endScaleVar;
+  emitter.speed = text.speed;
+  emitter.speedVar = text.speedVar;
+  emitter.gravityX = text.gravityX;
+  emitter.gravityY = text.gravityY;
+  emitter.radAccel = text.radAccel;
+  emitter.radAccelVar = text.radAccelVar;
+  emitter.tanAccel = text.tanAccel;
+  emitter.tanAccelVar = text.tanAccelVar;
+}
+
+var gui = null;
+var emitter = null;
+var text = null;
+var game = new tine.Game({framerate:2000}, {
+  preload: function() {
+    game.load.image('particle_base', 'assets/img/particle_base.png');
+    game.load.image('particle_red', 'assets/img/particle_red.png');
+    game.load.image('particle_blue', 'assets/img/particle_blue.png');
+    game.load.image('particle_green', 'assets/img/particle_green.png');
+  },
+
+  create: function() {
+    text = new Text();
+    gui = new dat.GUI();
+    gui.remember(text);
+
+    var f0 = gui.addFolder('Controls');
+    f0.add(text, 'pause');
+    f0.add(text, 'reset');
+    f0.add(text, 'random');
+    f0.open();
+
+    var f1 = gui.addFolder('Emitter');
+    f1.add(text, 'maxParticles', 0, 5000).listen().onChange(updateEmitterFull)
+    f1.add(text, 'image', ['particle_base', 'particle_red', 
+                           'particle_blue', 'particle_green']).listen().onChange(updateEmitterFull)
+    f1.add(text, 'additive', false).listen().onChange(updateEmitter)
+    // f1.add(text, 'duration', 0, 200).listen().onChange(updateEmitter)
+    f1.add(text, 'emissionRate', 0, 5000).listen().onChange(updateEmitter)
+    f1.add(text, 'emitX', 0, 800).listen().onChange(updateEmitter)
+    f1.add(text, 'emitXVar', 0, 1600).listen().onChange(updateEmitter)
+    f1.add(text, 'emitY', 0, 600).listen().onChange(updateEmitter)
+    f1.add(text, 'emitYVar', 0, 1200).listen().onChange(updateEmitter)
+    f1.add(text, 'angle', 0, 360).listen().onChange(updateEmitter)
+    f1.add(text, 'angleVar', 0, 360).listen().onChange(updateEmitter)
+    f1.open();
+
+    var f2 = gui.addFolder('Particles')
+    f2.add(text, 'life', 100, 10000).step(100).listen().onChange(updateEmitter)
+    f2.add(text, 'lifeVar', 100, 10000).listen().onChange(updateEmitter)
+    f2.add(text, 'startAlpha', 0, 1).listen().onChange(updateEmitter)
+    f2.add(text, 'startAlphaVar', 0, 1).listen().onChange(updateEmitter)
+    f2.add(text, 'endAlpha', 0.0, 1.0).listen().onChange(updateEmitter)
+    f2.add(text, 'endAlphaVar', 0, 1).listen().onChange(updateEmitter)
+    f2.add(text, 'startRotation', 0, 360).listen().onChange(updateEmitter)
+    f2.add(text, 'startRotationVar', 0, 360).listen().onChange(updateEmitter)
+    f2.add(text, 'endRotation', 0, 360).listen().onChange(updateEmitter)
+    f2.add(text, 'endRotationVar', 0, 360).listen().onChange(updateEmitter)
+    f2.add(text, 'startScale', 0, 5).listen().onChange(updateEmitter)
+    f2.add(text, 'startScaleVar', 0, 5).listen().onChange(updateEmitter)
+    f2.add(text, 'endScale', 0, 5).listen().onChange(updateEmitter)
+    f2.add(text, 'endScaleVar', 0, 5).listen().onChange(updateEmitter)
+    f2.add(text, 'speed', 0, 2000).listen().onChange(updateEmitter)
+    f2.add(text, 'speedVar', 0, 2000).listen().onChange(updateEmitter)
+    f2.add(text, 'gravityX', -10, 10).listen().onChange(updateEmitter)
+    f2.add(text, 'gravityY', -10, 10).listen().onChange(updateEmitter)
+    f2.add(text, 'radAccel', -10, 10).listen().onChange(updateEmitter)
+    f2.add(text, 'radAccelVar', -10, 10).listen().onChange(updateEmitter)
+    f2.add(text, 'tanAccel', -10, 10).listen().onChange(updateEmitter)
+    f2.add(text, 'tanAccelVar', -10, 10).listen().onChange(updateEmitter)
+    f2.open();
+
+
+    updateEmitterFull();
+    game.stage.addChild(emitter);
+    emitter.start(-1);
+  },
+
+  update: function() {
+    stats.begin();
+    if (!emitter.pause) {
+      try {
+        emitter.update(game.time.delta);
+      } catch (e) {
+      }
+    }
+
+    if (game.mouse.isDown(tine.buttons.LEFT)) {
+      emitter.emitX = game.mouse.x;
+      text.emitX = game.mouse.x;
+      emitter.emitY = game.mouse.y;
+      text.emitY = game.mouse.y;
+    }
+    stats.end();
+  }
+})
+
+
+</script>

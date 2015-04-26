@@ -1,3 +1,29 @@
+Version 1.0.0
+=============
+
+A major change in creatine structure, thus this version has several 
+incompatibilities with the previous ones.
+
+- change: mostly helpers are now renamed to *Managers.
+- change: overall directory structure.
+- change: sizers and display objects were moved to legacy.
+- change: sound manager now is persistent, using storage manager.
+- change: system is now part of scene management.
+- add: new game object grouping all other objects.
+- add: input managers to keyboard, mouse, gamepad and touch.
+- add: plugins system.
+- add: particle system.
+- add: new resource and factory managers;
+- add: new functions.
+- add: a template folder that replaces the createjs-boilerplate repository
+- fix: transitions work properly now.
+  - they reset the scene properties after the animation;
+  - they move up or down the scene depending on the animation;
+  - all effects can be used to replace, push or pop;
+  - a transitions can be while executing other transition;
+- rem: entity-component were removed.
+
+
 Version 0.2.0 [Dec 18, 2014]
 ============================
 

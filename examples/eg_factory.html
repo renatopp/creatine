@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf8"><title></title></head><body></body></html>
+
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/createjs.js"></script>
+<script src="assets/libs/creatine.js"></script>
+<script src="../src/tmx/TMXTileset.js"></script>
+<script src="../src/helpers/FactoryManager.js"></script>
+
+<script type="text/javascript">
+
+
+game = new tine.Game(null, {
+  preload:function() {
+    game.load.image('daisy', 'assets/img/daisy.png');
+    game.load.spritesheet('grant', 'assets/data/grant.json');
+    game.load.image('grant_image', 'assets/img/grant.png');
+    game.load.json('grant_data', 'assets/data/grant.json');
+    game.load.image('map_image', 'assets/img/desert.png');
+    game.load.json('map_data', 'assets/data/desert.json');
+  }, 
+  create:function() {
+    game.stage.addChild(game.create.tilemap('map_data', {
+      x:400, y:400, regX:'center', regY:'center', alha:0.8
+    }));
+
+    game.stage.addChild(game.create.bitmap('daisy', {x:10, y:10}));
+    game.stage.addChild(game.create.sprite('grant', 'run', {x:400, y:300}));
+
+    var ss = game.create.spritesheet('grant_data');
+    game.stage.addChild(game.create.sprite(ss, 'jump', {x:600, y:300, scaleX:-1}));
+
+    game.stage.addChild(game.create.text('Creatine 1.0.0', {
+      font:'72px Arial', color:'#FFF', x:400, y:300, 
+      regX:creatine.CENTER, regY:creatine.CENTER
+    }));
+
+    var shape = game.create.shape({x:60, y:500});
+    shape.graphics.beginFill('red').drawCircle(0, 0, 40);
+    game.stage.addChild(shape);
+  }
+});
+
+</script>

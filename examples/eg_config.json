@@ -1,0 +1,12 @@
+{
+  "project"         : "my_config",
+  "width"           : 200,
+  "height"          : 100,
+  "container"       : "game",
+  "framerate"       : 50,
+  "resources": {
+    "base_path" : "assets/img",
+    "manifest"  : [
+    ]
+  }
+}
